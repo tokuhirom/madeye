@@ -5,4 +5,7 @@ plugins:
       user: tokuhirom
   - module: Check::Network
     config:
+      urls:
+       - http://livedoor.com/
+       - http://google.com/
 

@@ -5,6 +5,7 @@ all_from 'lib/App/MadEye.pm';
 requires 'Gearman::Client';
 requires 'Gearman::Worker';
 requires 'Class::Component';
+requires 'LWP::UserAgent';
 
 build_requires 'Test::More';
 build_requires 'YAML';
