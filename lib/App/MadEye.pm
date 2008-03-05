@@ -4,12 +4,22 @@ use warnings;
 use 5.00800;
 our $VERSION = '0.01';
 use Class::Component;
-__PACKAGE__->load_components(qw/Plaggerize/);
+use Params::Validate;
+__PACKAGE__->load_components(qw/Plaggerize Autocall::InjectMethod/);
+__PACKAGE__->load_plugins(qw/+App::MadEye::Plugin::Worker/);
 
 sub run {
     my $self = shift;
+    use Carp::Always;
     $self->log(debug => 'run');
+
     $self->run_hook('check');
+
+    $self->run_workers();
+    $self->kill_workers();
+    $self->wait_workers();
+
+    $self->log(debug => 'finished');
 }
 
 1;

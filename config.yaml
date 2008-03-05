@@ -8,4 +8,9 @@ plugins:
       urls:
        - http://livedoor.com/
        - http://google.com/
+  - module: Worker
+    config:
+      fork_num: 3
+      gearman_servers:
+        - 127.0.0.1
 
