@@ -1,0 +1,8 @@
+---
+plugins:
+  - module: Check::User
+    config:
+      user: tokuhirom
+  - module: Check::Network
+    config:
+
