@@ -25,7 +25,7 @@ __END__
 
 =head1 NAME
 
-Watch2::Plugin::Check::User - network is alive?
+MadEye::Plugin::Check::User - network is alive?
 
 =head1 SYNOPSIS
 
