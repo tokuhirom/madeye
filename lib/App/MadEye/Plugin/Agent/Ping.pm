@@ -9,7 +9,7 @@ sub is_dead {
     my ($self, $host) = @_;
 
     my $conf = $self->config->{config};
-    my $timeout = $conf->{timeout} or 5;
+    my $timeout = $conf->{timeout} || 5;
 
     my $p = Net::Ping->new("tcp");
     $p->hires(1);
