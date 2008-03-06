@@ -14,7 +14,7 @@ use YAML;
 
 our $TIMEOUT = 60;  # TODO: configurable
 
-sub run_workers : Method {
+sub run_workers : Hook('before_run_jobs') {
     my ($self, $context) = @_;
 
     my $parent_pid = $PID;
@@ -68,13 +68,23 @@ sub run_job :Method {
     $taskset->wait; ## remove.
 }
 
-sub wait_jobs :Method {
-    my ($self, $context) = @_;
+sub after_run_jobs : Hook('after_run_jobs') {
+    my ($self, $context, $args) = @_;
 
-    $self->task_set->wait;
+    $context->log(debug => 'kill children!');
+
+    $self->wait_jobs($context);
+    $self->kill_workers($context);
+    $self->wait_workers($context);
 }
 
-sub kill_workers :Method {
+sub wait_jobs {
+    my ($self, $context) = @_;
+
+    $self->task_set($context)->wait;
+}
+
+sub kill_workers {
     my ( $self, $context ) = @_;
 
     my $taskset = $self->task_set($context);
@@ -100,7 +110,7 @@ sub gearman_client {
     };
 }
 
-sub wait_workers : Method {
+sub wait_workers {
     my ( $self, $context ) = @_;
 
     timeout $TIMEOUT, 'wait_children', sub {

@@ -7,12 +7,6 @@ use Params::Validate;
 
 our $TIMEOUT = 60;  # TODO: configurable
 
-# nop.
-sub run_workers  : Method { }
-sub wait_jobs    : Method { }
-sub kill_workers : Method { }
-sub wait_workers : Method { }
-
 sub run_job :Method {
     my ($self, $context, $args) = @_;
 

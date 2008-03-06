@@ -18,15 +18,11 @@ sub run {
 
     $self->run_hook('check');
 
-    $self->run_workers();
+    $self->run_hook('before_run_jobs');
 
-    $self->run_hook('run_jobs');
+        $self->run_hook('run_jobs');
 
-    $self->wait_jobs();
-
-    $self->kill_workers();
-
-    $self->wait_workers();
+    $self->run_hook('after_run_jobs');
 
     $self->run_hook('notify' => $self->{results});
 
