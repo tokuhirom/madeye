@@ -4,11 +4,6 @@ use warnings;
 use base qw/Class::Component::Plugin/;
 use App::MadEye::Util;
 use Params::Validate;
-use English;
-use App::MadEye::Util;
-use POSIX ":sys_wait_h";
-use Storable qw/freeze thaw/;
-use YAML;
 
 our $TIMEOUT = 60;  # TODO: configurable
 our $EXPTIME = 180; # TODO: configurable
