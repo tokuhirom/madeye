@@ -33,5 +33,16 @@ plugins:
         - 127.0.0.1
       admin_port: 33562
 
+  - module: Agent::SNMPDisk
+    config:
+      target:
+        - 127.0.0.1
+
+  - module: Agent::POP3S
+    config:
+      target:
+        - 127.0.0.1
+      port: 1122252
+
   - module: Notify::Debug
 

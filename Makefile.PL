@@ -15,7 +15,9 @@ requires 'Storable';
 requires 'IO::Socket::INET';
 requires 'Socket';
 requires 'IO::Select';
+requires 'IO::Socket::SSL';
 requires 'Net::SSH';
+requires 'IPC::Open3';
 
 build_requires 'Test::More';
 build_requires 'YAML';
