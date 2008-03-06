@@ -26,7 +26,10 @@ plugins:
 
   - module: Agent::FTP
     config:
-      target: ftp.ring.gr.jp
+      target:
+       - ftp.ring.gr.jp
+       - ftp.ring.gr.jp
+       - ring.shibaura-it.ac.jp
       message: FTP server raady.
     rule:
       - module: Retry
@@ -114,4 +117,8 @@ plugins:
 #       - 192.168.2.3
 
   - module: Notify::Debug
+  - module: Notify::Email
+    config:
+      from_addr: tokuhirom@example.com
+      to_addr  : tokuhirom@example.com
 
