@@ -20,12 +20,17 @@ plugins:
       target: http://livedoor.com/
       user_agent: DoCoMo/1.0/P504i/c30/TB
 
-  - module: Agent::HTTP
+  - module: Agent::FTP
     config:
-      target:
-       - http://livedoor.com/
-       - http://ljkdlsjaflfvedoor.com/
-      user_agent: DoCoMo/1.0/P504i/c30/TB
+      target: ftp.ring.gr.jp
+      message: FTP server ready.
+
+# - module: Agent::HTTP
+#   config:
+#     target:
+#      - http://livedoor.com/
+#      - http://ljkdlsjaflfvedoor.com/
+#     user_agent: DoCoMo/1.0/P504i/c30/TB
 
   - module: Agent::DJabberd
     config:
