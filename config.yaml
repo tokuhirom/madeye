@@ -27,5 +27,11 @@ plugins:
        - http://ljkdlsjaflfvedoor.com/
       user_agent: DoCoMo/1.0/P504i/c30/TB
 
+  - module: Agent::DJabberd
+    config:
+      target:
+        - 127.0.0.1
+      admin_port: 33562
+
   - module: Notify::Debug
 

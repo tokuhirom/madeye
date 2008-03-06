@@ -12,6 +12,10 @@ requires 'Gearman::Worker';
 requires 'Cache::Memcached';
 requires 'YAML';
 requires 'Storable';
+requires 'IO::Socket::INET';
+requires 'Socket';
+requires 'IO::Select';
+requires 'Net::SSH';
 
 build_requires 'Test::More';
 build_requires 'YAML';
