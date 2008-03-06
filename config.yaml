@@ -69,10 +69,18 @@ plugins:
 #         ip:   203.131.197.197
 #     timeout: 1
 
-  - module: Agent::Mogilefsd
+# - module: Agent::Mogilefsd
+#   config:
+#     target:
+#       - 127.0.0.1:1111
+
+  - module: Agent::SMTPTLS
     config:
+      timeout: 1
       target:
-        - 127.0.0.1:1111
+        - 127.0.0.1
+        - 192.168.1.1
+        - mail.mfac.jp
 
   - module: Notify::Debug
 

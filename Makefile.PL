@@ -28,6 +28,9 @@ features(
         -default => 0,
         recommends('Net::DNS'),
     ],
+    'Agent::SMTPTLS' => [
+        recommends('Net::SMTP::TLS')
+    ],
 );
 
 build_requires 'Test::More';
