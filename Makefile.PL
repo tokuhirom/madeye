@@ -40,6 +40,9 @@ features(
         recommends('Gearman::Worker'),
         recommends('Storable'),
     ],
+    'Rule::Retry' => [
+        recommends('Cache::FileCache'),
+    ],
 );
 
 build_requires 'Test::More';

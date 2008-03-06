@@ -29,10 +29,15 @@ plugins:
       target: ftp.ring.gr.jp
       message: FTP server raady.
     rule:
-      - module: DateTimeCron
+      - module: Retry
         config:
-          crontab: "* 16 * * *"
-          type: ignore
+          expire_time: 30m
+          cache_root: /tmp/foo
+
+#     - module: DateTimeCron
+#       config:
+#         crontab: "* 16 * * *"
+#         type: ignore
 
 # - module: Agent::HTTP
 #   config:
