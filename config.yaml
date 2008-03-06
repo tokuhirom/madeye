@@ -32,29 +32,34 @@ plugins:
 #      - http://ljkdlsjaflfvedoor.com/
 #     user_agent: DoCoMo/1.0/P504i/c30/TB
 
-  - module: Agent::DJabberd
+# - module: Agent::DJabberd
+#   config:
+#     target:
+#       - 127.0.0.1
+#     admin_port: 33562
+
+# - module: Agent::SNMPDisk
+#   config:
+#     target:
+#       - 127.0.0.1
+
+# - module: Agent::POP3S
+#   config:
+#     target:
+#       - 127.0.0.1
+#     port: 1122252
+
+# - module: Agent::DBI
+#   config:
+#     target:
+#       - dbi:
+#     user: root
+#     password: root
+
+  - module: Agent::Gearmand
     config:
       target:
         - 127.0.0.1
-      admin_port: 33562
-
-  - module: Agent::SNMPDisk
-    config:
-      target:
-        - 127.0.0.1
-
-  - module: Agent::POP3S
-    config:
-      target:
-        - 127.0.0.1
-      port: 1122252
-
-  - module: Agent::DBI
-    config:
-      target:
-        - dbi:
-      user: root
-      password: root
 
   - module: Notify::Debug
 
