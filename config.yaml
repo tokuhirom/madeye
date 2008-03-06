@@ -9,15 +9,15 @@ plugins:
        - http://livedoor.com/
        - http://google.com/
 
-# - module: Worker::Simple
-#   config:
-#     timeout: 4
-
-  - module: Worker::Gearman
+  - module: Worker::Simple
     config:
-      fork_num: 3
-      gearman_servers:
-        - 127.0.0.1
+      timeout: 1
+
+# - module: Worker::Gearman
+#   config:
+#     fork_num: 3
+#     gearman_servers:
+#       - 127.0.0.1
 
 # - module: Agent::HTTP
 #   config:
@@ -27,7 +27,12 @@ plugins:
   - module: Agent::FTP
     config:
       target: ftp.ring.gr.jp
-      message: FTP server ready.
+      message: FTP server raady.
+    rule:
+      - module: DateTimeCron
+        config:
+          crontab: "* 16 * * *"
+          type: ignore
 
 # - module: Agent::HTTP
 #   config:
@@ -78,12 +83,12 @@ plugins:
 #     target:
 #       - 127.0.0.1:1111
 
-  - module: Agent::SMTPTLS
-    config:
-      timeout: 1
-      target:
-        - 127.0.0.1
-        - 192.168.1.1
+# - module: Agent::SMTPTLS
+#   config:
+#     timeout: 1
+#     target:
+#       - 127.0.0.1
+#       - 192.168.1.1
 
 # - module: Agent::Process
 #   config:
@@ -91,17 +96,17 @@ plugins:
 #       - 127.0.0.1
 #     pattern: /usr/bin/gearmandaa
 
-  - module: Agent::Ping
-    config:
-      target:
-        - 127.0.0.1
-        - 192.168.2.3
+# - module: Agent::Ping
+#   config:
+#     target:
+#       - 127.0.0.1
+#       - 192.168.2.3
 
-  - module: Agent::SMTP
-    config:
-      target:
-        - 127.0.0.1
-        - 192.168.2.3
+# - module: Agent::SMTP
+#   config:
+#     target:
+#       - 127.0.0.1
+#       - 192.168.2.3
 
   - module: Notify::Debug
 

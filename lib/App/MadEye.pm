@@ -5,6 +5,7 @@ use 5.00800;
 our $VERSION = '0.01';
 use Class::Component;
 use Params::Validate;
+use UNIVERSAL::require;
 __PACKAGE__->load_components(qw/Plaggerize Autocall::InjectMethod/);
 
 sub run {
@@ -40,10 +41,50 @@ sub add_result {
     );
     my $args = {@_};
 
+    return unless $self->_should_add_result(target => $args->{target}, plugin => $args->{plugin});
+
     push @{$self->{results}->{ref $args->{plugin}}}, +{
         target  => $args->{target},
         message => $args->{message},
-    }; 
+    };
+}
+
+sub _should_add_result {
+    my $self = shift;
+    validate(
+        @_ => +{
+            plugin => 1,
+            target => 1,
+        }
+    );
+    my $args = {@_};
+
+    if ($args->{plugin}->config->{rule}) {
+        for my $rule_conf ( @{ $args->{plugin}->config->{rule} } ) {
+            my $rule = $self->_load_rule($rule_conf);
+            my $ret = $rule->dispatch(
+                $self,
+                +{
+                    target => $args->{target},
+                }
+            );
+            return 0 if $ret;
+        }
+    }
+    return 1;
+}
+
+sub _load_rule {
+    my ($self, $rule) = @_;
+
+    my $class = $rule->{module};
+    if ($class =~ /^\+/) {
+        $class =~ s/^\+//;
+    } else {
+        $class = __PACKAGE__ . '::Rule::' . $class;
+    }
+    $class->use or die $@;
+    return $class->new($rule->{config});
 }
 
 1;
