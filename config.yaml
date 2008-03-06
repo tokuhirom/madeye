@@ -49,5 +49,12 @@ plugins:
         - 127.0.0.1
       port: 1122252
 
+  - module: Agent::DBI
+    config:
+      target:
+        - dbi:
+      user: root
+      password: root
+
   - module: Notify::Debug
 
