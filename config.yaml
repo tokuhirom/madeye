@@ -61,13 +61,18 @@ plugins:
 #     target:
 #       - 127.0.0.1
 
-  - module: Agent::DNS
+# - module: Agent::DNS
+#   config:
+#     target:
+#       - host: ldns01.data-hotel.net
+#         name: livedoor.com
+#         ip:   203.131.197.197
+#     timeout: 1
+
+  - module: Agent::Mogilefsd
     config:
       target:
-        - host: ldns01.data-hotel.net
-          name: livedoor.com
-          ip:   203.131.197.197
-      timeout: 1
+        - 127.0.0.1:1111
 
   - module: Notify::Debug
 

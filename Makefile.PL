@@ -18,9 +18,17 @@ requires 'IO::Select';
 requires 'IO::Socket::SSL';
 requires 'Net::SSH';
 requires 'IPC::Open3';
-requires 'DBD::mysql';
 requires 'DBI';
-requires 'Net::DNS';
+features(
+    'Agent::MogileFSTracker' => [
+        -default => 0,
+        recommends('MogileFS::Admin'),
+    ],
+    'Agent::DNS' => [
+        -default => 0,
+        recommends('Net::DNS'),
+    ],
+);
 
 build_requires 'Test::More';
 build_requires 'YAML';
