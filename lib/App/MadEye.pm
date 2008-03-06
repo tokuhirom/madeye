@@ -12,7 +12,7 @@ sub run {
     my $self = shift;
     $self->log(debug => 'run');
 
-    unless ($self->can('run_workers')) {
+    unless (defined $self->class_component_methods->{'run_job'}) {
         $self->log(debug => 'use Worker::Simple');
         $self->load_plugins(qw/Worker::Simple/);
     }
