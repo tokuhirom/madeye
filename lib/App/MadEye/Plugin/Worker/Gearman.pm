@@ -1,4 +1,4 @@
-package App::MadEye::Plugin::Worker;
+package App::MadEye::Plugin::Worker::Gearman;
 use strict;
 use warnings;
 use base qw/Class::Component::Plugin/;

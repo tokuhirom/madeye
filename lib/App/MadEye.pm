@@ -6,11 +6,14 @@ our $VERSION = '0.01';
 use Class::Component;
 use Params::Validate;
 __PACKAGE__->load_components(qw/Plaggerize Autocall::InjectMethod/);
-__PACKAGE__->load_plugins(qw/+App::MadEye::Plugin::Worker/);
 
 sub run {
     my $self = shift;
     $self->log(debug => 'run');
+
+    unless ($self->can('run_workers')) {
+        die "please load any Plugin::Worker::*";
+    }
 
     $self->run_hook('check');
 

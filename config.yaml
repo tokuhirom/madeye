@@ -9,11 +9,15 @@ plugins:
        - http://livedoor.com/
        - http://google.com/
 
-  - module: Worker
+  - module: Worker::Simple
     config:
-      fork_num: 3
-      gearman_servers:
-        - 127.0.0.1
+      timeout: 4
+
+# - module: Worker::Gearman
+#   config:
+#     fork_num: 3
+#     gearman_servers:
+#       - 127.0.0.1
 
 # - module: Agent::HTTP
 #   config:
