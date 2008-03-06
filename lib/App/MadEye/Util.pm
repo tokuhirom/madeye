@@ -4,6 +4,7 @@ use warnings;
 use base qw/Exporter/;
 
 our @EXPORT = qw/timeout log_stopwatch/;
+
 use Sys::Syslog qw/:DEFAULT/;
 
 sub timeout($$&) {    ## no critic.
