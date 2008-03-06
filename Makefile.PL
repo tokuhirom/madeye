@@ -20,6 +20,7 @@ requires 'Net::SSH';
 requires 'IPC::Open3';
 requires 'DBD::mysql';
 requires 'DBI';
+requires 'Net::DNS';
 
 build_requires 'Test::More';
 build_requires 'YAML';

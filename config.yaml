@@ -15,10 +15,10 @@ plugins:
       gearman_servers:
         - 127.0.0.1
 
-  - module: Agent::HTTP
-    config:
-      target: http://livedoor.com/
-      user_agent: DoCoMo/1.0/P504i/c30/TB
+# - module: Agent::HTTP
+#   config:
+#     target: http://livedoor.com/
+#     user_agent: DoCoMo/1.0/P504i/c30/TB
 
   - module: Agent::FTP
     config:
@@ -56,10 +56,18 @@ plugins:
 #     user: root
 #     password: root
 
-  - module: Agent::Gearmand
+# - module: Agent::Gearmand
+#   config:
+#     target:
+#       - 127.0.0.1
+
+  - module: Agent::DNS
     config:
       target:
-        - 127.0.0.1
+        - host: ldns01.data-hotel.net
+          name: livedoor.com
+          ip:   203.131.197.197
+      timeout: 1
 
   - module: Notify::Debug
 
