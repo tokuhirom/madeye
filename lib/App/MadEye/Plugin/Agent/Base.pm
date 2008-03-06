@@ -12,14 +12,14 @@ sub import {
     no strict 'refs';
     push @{"$pkg\::ISA"}, $class;
 
-    *{"$pkg\::register_agents"} = sub :Hook('register_jobs') {
+    *{"$pkg\::run_jobs"} = sub :Hook('run_jobs') {
         my ($self, $context, $args) = @_;
         my $target = $self->config->{config}->{target};
            $target = [$target] unless ref $target eq 'ARRAY';
 
         for my $t (@$target) {
             $context->log('debug', "register job: $self, $t");
-            $context->register_job( +{ target => $t, plugin => $self, } );
+            $context->run_job( +{ target => $t, plugin => $self, } );
         }
     };
 }

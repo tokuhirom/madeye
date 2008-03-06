@@ -20,7 +20,7 @@ sub run {
 
     $self->run_workers();
 
-    $self->run_hook('register_jobs');
+    $self->run_hook('run_jobs');
 
     $self->wait_jobs();
 

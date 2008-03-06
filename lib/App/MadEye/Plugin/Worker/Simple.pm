@@ -13,7 +13,7 @@ sub wait_jobs    : Method { }
 sub kill_workers : Method { }
 sub wait_workers : Method { }
 
-sub register_job :Method {
+sub run_job :Method {
     my ($self, $context, $args) = @_;
 
     $context->log( debug => "watching $args->{target} by $args->{plugin}" );

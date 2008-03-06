@@ -35,7 +35,7 @@ sub run_workers : Method {
     $context->{child_pids} = \@child_pids;
 }
 
-sub register_job :Method {
+sub run_job :Method {
     my ($self, $context, $args) = @_;
 
     my $taskset = $self->task_set($context);
