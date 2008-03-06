@@ -87,5 +87,11 @@ plugins:
         - 127.0.0.1
       pattern: /usr/bin/gearmandaa
 
+  - module: Agent::Ping
+    config:
+      target:
+        - 127.0.0.1
+        - 192.168.2.3
+
   - module: Notify::Debug
 

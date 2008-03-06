@@ -31,6 +31,9 @@ features(
     'Agent::SMTPTLS' => [
         recommends('Net::SMTP::TLS')
     ],
+    'Agent::Ping' => [
+        recommends('Net::Ping')
+    ],
 );
 
 build_requires 'Test::More';
