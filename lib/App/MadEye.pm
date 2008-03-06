@@ -12,7 +12,8 @@ sub run {
     $self->log(debug => 'run');
 
     unless ($self->can('run_workers')) {
-        die "please load any Plugin::Worker::*";
+        $self->log(debug => 'use Worker::Simple');
+        $self->load_plugins(qw/Worker::Simple/);
     }
 
     $self->run_hook('check');

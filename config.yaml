@@ -9,9 +9,9 @@ plugins:
        - http://livedoor.com/
        - http://google.com/
 
-  - module: Worker::Simple
-    config:
-      timeout: 4
+# - module: Worker::Simple
+#   config:
+#     timeout: 4
 
 # - module: Worker::Gearman
 #   config:
