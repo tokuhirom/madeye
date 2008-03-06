@@ -81,13 +81,19 @@ plugins:
         - 127.0.0.1
         - 192.168.1.1
 
-  - module: Agent::Process
+# - module: Agent::Process
+#   config:
+#     target:
+#       - 127.0.0.1
+#     pattern: /usr/bin/gearmandaa
+
+  - module: Agent::Ping
     config:
       target:
         - 127.0.0.1
-      pattern: /usr/bin/gearmandaa
+        - 192.168.2.3
 
-  - module: Agent::Ping
+  - module: Agent::SMTP
     config:
       target:
         - 127.0.0.1

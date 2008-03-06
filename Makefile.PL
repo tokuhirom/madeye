@@ -34,6 +34,9 @@ features(
     'Agent::Ping' => [
         recommends('Net::Ping')
     ],
+    'Agent::SMTP' => [
+        recommends('Net::SMTP')
+    ],
 );
 
 build_requires 'Test::More';
