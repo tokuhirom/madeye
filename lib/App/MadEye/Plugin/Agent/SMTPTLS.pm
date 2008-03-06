@@ -20,8 +20,6 @@ sub is_dead {
             NoTLS   => 1,
             Timeout => $timeout,
         );
-        warn $smtptls->hello;
-        warn $smtptls;
     };
     if ($@) {
         return "dead: $@";
