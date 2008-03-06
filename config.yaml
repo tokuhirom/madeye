@@ -8,9 +8,24 @@ plugins:
       urls:
        - http://livedoor.com/
        - http://google.com/
+
   - module: Worker
     config:
       fork_num: 3
       gearman_servers:
         - 127.0.0.1
+
+  - module: Agent::HTTP
+    config:
+      target: http://livedoor.com/
+      user_agent: DoCoMo/1.0/P504i/c30/TB
+
+  - module: Agent::HTTP
+    config:
+      target:
+       - http://livedoor.com/
+       - http://ljkdlsjaflfvedoor.com/
+      user_agent: DoCoMo/1.0/P504i/c30/TB
+
+  - module: Notify::Debug
 

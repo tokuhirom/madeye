@@ -10,16 +10,40 @@ __PACKAGE__->load_plugins(qw/+App::MadEye::Plugin::Worker/);
 
 sub run {
     my $self = shift;
-    use Carp::Always;
     $self->log(debug => 'run');
 
     $self->run_hook('check');
 
     $self->run_workers();
+
+    $self->run_hook('register_jobs');
+
+    $self->wait_jobs();
+
     $self->kill_workers();
+
     $self->wait_workers();
 
+    $self->run_hook('notify' => $self->{results});
+
     $self->log(debug => 'finished');
+}
+
+sub add_result {
+    my $self = shift;
+    validate(
+        @_ => +{
+            plugin  => 1,
+            target  => 1,
+            message => 1,
+        }
+    );
+    my $args = {@_};
+
+    push @{$self->{results}->{ref $args->{plugin}}}, +{
+        target  => $args->{target},
+        message => $args->{message},
+    }; 
 }
 
 1;

@@ -9,6 +9,8 @@ use Params::Validate;
 use English;
 use App::MadEye::Util;
 use POSIX ":sys_wait_h";
+use Storable qw/freeze thaw/;
+use YAML;
 
 our $TIMEOUT = 60;  # TODO: configurable
 our $EXPTIME = 180; # TODO: configurable
@@ -25,7 +27,8 @@ sub run_workers : Method {
             push @child_pids, $pid;
         } elsif ( defined $pid ) {
             # child process
-            $self->run_worker($parent_pid);
+            $context->log('debug', "start worker $i($parent_pid)");
+            $self->run_worker($context, $parent_pid);
         } else {
             die "Cannot fork: $!";
         }
@@ -33,22 +36,69 @@ sub run_workers : Method {
     $context->{child_pids} = \@child_pids;
 }
 
+sub register_job :Method {
+    my ($self, $context, $args) = @_;
+
+    my $taskset = $self->task_set($context);
+    $taskset->add_task(
+        'watch',
+        freeze($args), +{
+            on_fail => sub {
+                warn "GEARMAN ERROR: " . Dump($args);
+            },
+            on_complete => sub {
+                my $args = thaw( ${ $_[0] } );
+
+                if ( ref $args eq 'HASH' ) {
+                    # this server was dead.
+                    $context->add_result(
+                        plugin  => $args->{plugin},
+                        target  => $args->{target},
+                        message => $args->{message},
+                    );
+                }
+                elsif ( ref $args eq 'SCALAR' && not defined $$args ) {
+                    # success case
+                }
+                else {
+                    die "invalid value: " . Dump($args);
+                }
+              },
+        }
+    );
+    $taskset->wait; ## remove.
+}
+
+sub wait_jobs :Method {
+    my ($self, $context) = @_;
+
+    $self->task_set->wait;
+}
+
 sub kill_workers :Method {
     my ( $self, $context ) = @_;
 
-    my $taskset = $self->gearman_client->new_task_set;
+    my $taskset = $self->task_set($context);
     for my $child_pid (@{ $context->{child_pids} }) {
         $taskset->add_task( "exit$child_pid", undef );
     }
 }
 
+sub task_set {
+    my ($self, $context) = @_;
+
+    $context->{task_set} ||= $self->gearman_client->new_task_set;
+}
+
 sub gearman_client {
     my $self = shift;
 
-    my $client = Gearman::Client->new;
-    $client->job_servers( @{ $self->config->{config}->{gearman_servers} } );
-    $client->prefix($PID);
-    $client;
+    $self->{client} ||= do {
+        my $client = Gearman::Client->new;
+        $client->job_servers( @{ $self->config->{config}->{gearman_servers} } );
+        $client->prefix($PID);
+        $client;
+    };
 }
 
 sub wait_workers : Method {
@@ -66,28 +116,32 @@ sub wait_workers : Method {
 }
 
 sub run_worker {
-    my ($self, $parent_pid) = @_;
+    my ($self, $context, $parent_pid) = @_;
 
     my $worker = Gearman::Worker->new;
     $worker->job_servers( @{ $self->config->{config}->{gearman_servers} } );
     $worker->prefix($parent_pid);
     $worker->register_function(
-        "watch",
+        'watch',
         sub {
             my $args = thaw( $_[0]->arg );
 
             my $result = \undef;
-            timeout $TIMEOUT, "watching $args->{host} $args->{module}", sub {
-                my $agent = load_agent( $args->{module} );
-                unless ( $agent->is_alive( $args->{host}, $args->{args} ) ) {
+            timeout $TIMEOUT, "watching $args->{target} $args->{plugin}", sub {
+                if ( my $message = $args->{plugin}->is_dead( $args->{target} ) ) {
+                    # TODO: このあたりのルールもちゃんとつくる
                     if (
                         $self->should_notify_p(
-                            host => $args->{host},
-                            opt  => $args
+                            target  => $args->{target},
+                            context => $context,
                         )
                       )
                     {
-                        $result = +{ msg => $agent->message, };
+                        $result = +{
+                            message => $message,
+                            plugin  => $args->{plugin},
+                            target  => $args->{target},
+                        };
                     }
                 }
             };
@@ -103,16 +157,13 @@ sub run_worker {
     $worker->work while 1;
 }
 
-=head1
-
-
 # これはここにあるべきか？ちげーだろ。
 sub should_notify_p {
     my $self = shift;
     validate(
         @_ => {
-            host => 1,
-            opt  => 1,
+            target  => 1,
+            context => 1,
         }
     );
     my %args = @_;
@@ -148,8 +199,6 @@ sub should_notify_p {
 
     return 1;    # 死んでるんだからおしらせしとけや
 }
-
-=cut
 
 1;
 

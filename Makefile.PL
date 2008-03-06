@@ -10,6 +10,8 @@ requires 'Params::Validate';
 requires 'Gearman::Client';
 requires 'Gearman::Worker';
 requires 'Cache::Memcached';
+requires 'YAML';
+requires 'Storable';
 
 build_requires 'Test::More';
 build_requires 'YAML';
