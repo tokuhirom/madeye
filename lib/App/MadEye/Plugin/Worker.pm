@@ -126,6 +126,8 @@ sub run_worker {
         sub {
             my $args = thaw( $_[0]->arg );
 
+            $context->log( debug => "watching $args->{target} by $args->{plugin}" );
+
             my $result = \undef;
             timeout $TIMEOUT, "watching $args->{target} $args->{plugin}", sub {
                 if ( my $message = $args->{plugin}->is_dead( $args->{target} ) ) {
