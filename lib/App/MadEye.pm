@@ -94,21 +94,31 @@ __END__
 
 =head1 NAME
 
-App::MadEye -
+App::MadEye - enterprise-class monitoring solutions
 
 =head1 SYNOPSIS
 
-  use App::MadEye;
+    ./madeye.pl -c config.yaml
+
+=head1 WARNINGS
+
+THIS SOFT IS UNDER DEVELOPMENT.STILL UNDER BETA QUALITY.
 
 =head1 DESCRIPTION
 
-App::MadEye is
+App::MadEye is enterprise-class monitoring solutions.
+
+    - use Class::Component
+    - Plagger style
+    - Plagger like rule
 
 =head1 AUTHOR
 
 Tokuhiro Matsuno E<lt>tokuhirom AAJKLFJEF GMAIL COME<gt>
 
 =head1 SEE ALSO
+
+L<App::MadEye>
 
 =head1 LICENSE
 
