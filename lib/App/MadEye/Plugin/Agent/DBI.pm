@@ -32,3 +32,26 @@ sub is_dead {
 }
 
 1;
+__END__
+
+=head1 NAME
+
+App::MadEye::Plugin::Agent::DBI - monitoring DB
+
+=head1 SYNOPSIS
+
+    - module: Agent::DBI
+      config:
+        dsn: DBI:mysql:database=foo
+        user: root
+        password: ~
+
+=head1 AUTHORS
+
+Tokuhiro Matsuno
+
+=head1 SEE ALSO
+
+L<DBI>, L<App::MadEye>
+
+

@@ -51,3 +51,21 @@ sub is_dead {
 }
 
 1;
+__END__
+
+=head1 NAME
+
+App::MadEye::Plugin::Agent::DJabberd - monitoring DJabberd
+
+=head1 SYNOPSIS
+
+    - module: Agent::DJabberd
+      config:
+        admin_port: 1000
+        open_socket_timeout: 10
+        select_timeout: 3
+
+=head1 SEE ALSO
+
+L<App::MadEye>, L<DJabberd>
+
