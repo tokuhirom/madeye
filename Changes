@@ -1,4 +1,9 @@
 Revision history for Perl extension App::MadEye
 
+0.02
+
+    - oops. 0.01 is broken... version 0.01 does not contains madeye.pl...(REPORTED BY hirose31++)
+    - added more document.
+
 0.01    Wed Mar  5 16:39:07 2008
         - original version
