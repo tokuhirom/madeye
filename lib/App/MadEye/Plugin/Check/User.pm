@@ -21,7 +21,7 @@ __END__
 
 =head1 NAME
 
-MadEye::Plugin::Check::User - check uid
+App::MadEye::Plugin::Check::User - check uid
 
 =head1 SYNOPSIS
 
