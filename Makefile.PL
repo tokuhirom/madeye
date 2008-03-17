@@ -12,6 +12,9 @@ requires 'IO::Select';
 requires 'IO::Socket::SSL';
 requires 'Net::SSH';
 requires 'IPC::Open3';
+requires 'Kwalify';
+requires 'Pod::POM';
+requires 'List::Util';
 
 features(
     'Agent::DBI' => [

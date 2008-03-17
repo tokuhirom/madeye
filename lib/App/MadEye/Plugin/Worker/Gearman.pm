@@ -1,7 +1,7 @@
 package App::MadEye::Plugin::Worker::Gearman;
 use strict;
 use warnings;
-use base qw/Class::Component::Plugin/;
+use base qw/App::MadEye::Plugin::Base/;
 use Gearman::Worker;
 use Gearman::Client;
 use App::MadEye::Util;
@@ -12,33 +12,15 @@ use POSIX ":sys_wait_h";
 use Storable qw/freeze thaw/;
 use YAML;
 use Scalar::Util qw/weaken/;
-use Kwalify ();
 
 __PACKAGE__->mk_accessors(qw/task_set child_pids gearman_client/);
 
 our $TASK_TIMEOUT = 60;  # TODO: configurable
 our $CHILD_TIMEOUT = 60;  # TODO: configurable
 
-my $schema = +{
-    type    => 'map',
-    mapping => +{
-        gearman_servers => +{
-            type     => 'seq',
-            sequence => +[ +{ type => 'str' }, ],
-            required => 'yes',
-        },
-        fork_num => +{
-            type     => 'int',
-            required => 'yes',
-        },
-    },
-};
-
 sub new {
     my $class = shift;
     my $self = $class->SUPER::new(@_);
-
-    Kwalify::validate($schema, $self->config->{config});
 
     my $gearman_client = $self->get_gearman_client;
     $self->gearman_client( $gearman_client );
@@ -174,4 +156,32 @@ sub run_worker {
 }
 
 1;
+__END__
+
+=for stopwords gearman
+
+=head1 NAME
+
+App::MadEye::Plugin::Worker::Gearman - work with gearman
+
+=head1 SCHEMA
+
+    type: map
+    mapping:
+        fork_num:
+            required: yes
+            type: int
+        gearman_servers:
+            type: seq
+            sequence:
+                - type: str
+            required: yes
+
+=head1 AUTHOR
+
+Tokuhiro Matsuno
+
+=head1 SEE ALSO
+
+L<App::MadEye>, L<Gearman::Client>, L<Gearman::Worker>
 
