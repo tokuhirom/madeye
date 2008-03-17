@@ -1,18 +1,17 @@
 package App::MadEye::Plugin::Worker::Simple;
 use strict;
 use warnings;
-use base qw/Class::Component::Plugin/;
+use base qw/App::MadEye::Plugin::Base/;
 use App::MadEye::Util;
 use Params::Validate;
-
-our $TIMEOUT = 60;  # TODO: configurable
 
 sub run_job :Method {
     my ($self, $context, $args) = @_;
 
     $context->log( debug => "watching $args->{target} by $args->{plugin}" );
 
-    timeout $TIMEOUT, "watching $args->{target} $args->{plugin}", sub {
+    my $timeout = $self->config->{config}->{task_timeout} or die "missing task_timeout";
+    timeout $timeout, "watching $args->{target} $args->{plugin}", sub {
         if ( my $message = $args->{plugin}->is_dead( $args->{target} ) ) {
             $context->add_result(
                 plugin  => $args->{plugin},
@@ -26,4 +25,20 @@ sub run_job :Method {
 }
 
 1;
+__END__
 
+=head1 NAME
+
+App::MadEye::Plugin::Worker::Simple - simple worker
+
+=head1 SCHEMA
+
+    type: map
+    mapping:
+        task_timeout:
+            required: yes
+            type: int
+
+=head1 SEE ALSO
+
+L<App::MadEye>
