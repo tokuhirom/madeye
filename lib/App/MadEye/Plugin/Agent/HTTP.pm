@@ -11,7 +11,7 @@ sub is_dead {
 
     my $ua = LWP::UserAgent->new(
         timeout => $TIMEOUT,
-        agent   => $self->config->{config}->{user_agent} || 'App::MadEye',
+        agent   => $self->config->{config}->{user_agent} || "App::MadEye($App::MadEye::VERSION)",
     );
     my $res = $ua->get($url);
 
@@ -23,4 +23,33 @@ sub is_dead {
 }
 
 1;
+__END__
+
+=head1 NAME
+
+App::MadEye::Plugin::Agent::HTTP - check http.
+
+=head1 SCHEMA
+
+    type: map
+    mapping:
+        target:
+            type: seq
+            required: yes
+            sequence:
+                - type: str
+        timeout:
+            required: yes
+            type: int
+        user_agent:
+            required: no
+            type: str
+
+=head1 AUTHOR
+
+Tokuhiro Matsuno
+
+=head1 SEE ALSO
+
+L<App::MadEye>, L<Gearman::Client>, L<Gearman::Worker>
 
