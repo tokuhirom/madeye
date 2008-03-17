@@ -1,7 +1,7 @@
 package App::MadEye::Plugin::Notify::Email;
 use strict;
 use warnings;
-use base qw/Class::Component::Plugin/;
+use base qw/App::MadEye::Plugin::Base/;
 use Params::Validate;
 use MIME::Lite;
 use DateTime;
@@ -40,3 +40,24 @@ sub _format {
 }
 
 1;
+__END__
+
+=head1 NAME
+
+App::MadEye::Plugin::Notify::Email - notify by email
+
+=head1 SCHEMA
+
+    type: map
+    mapping:
+        from_addr:
+            type: str
+            required: yes
+        to_addr:
+            type: str
+            required: yes
+
+=head1 SEE ALSO
+
+L<App::MadEye>, L<MIME::Lite>
+
