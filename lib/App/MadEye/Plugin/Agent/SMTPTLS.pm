@@ -30,4 +30,33 @@ sub is_dead {
 }
 
 1;
+__END__
+
+=head1 NAME
+
+App::MadEye::Plugin::Agent::SMTPTLS - check smtptls.
+
+=head1 SCHEMA
+
+    type: map
+    mapping:
+        target:
+            type: seq
+            required: yes
+            sequence:
+                - type: str
+        port:
+            required: no
+            type: int
+        timeout:
+            required: no
+            type: int
+
+=head1 AUTHOR
+
+Tokuhiro Matsuno
+
+=head1 SEE ALSO
+
+L<App::MadEye>, L<Net::SMTP::TLS>
 
