@@ -35,3 +35,31 @@ sub is_dead {
 }
 
 1;
+__END__
+
+=head1 NAME
+
+App::MadEye::Plugin::Agent::Mogilefsd - monitoring mogilefsd
+
+=head1 SCHEMA
+
+    type: map
+    mapping:
+        target:
+            type: seq
+            required: yes
+            sequence:
+                - type: str
+        retry:
+            required: yes
+            type: int
+
+=head1 AUTHORS
+
+Tokuhiro Matsuno
+
+=head1 SEE ALSO
+
+L<MogileFS::Admin>, L<App::MadEye>
+
+
