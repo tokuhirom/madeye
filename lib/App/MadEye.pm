@@ -15,6 +15,8 @@ sub run {
     my $self = shift;
     $self->log(debug => 'run');
 
+    $self->{results} = {};
+
     $context = $self;
 
     unless (defined $self->class_component_methods->{'run_job'}) {
@@ -30,7 +32,9 @@ sub run {
 
     $self->run_hook('after_run_jobs');
 
-    $self->run_hook('notify' => $self->{results});
+    if (%{$self->{results}}) {
+        $self->run_hook('notify' => $self->{results});
+    }
 
     $self->log(debug => 'finished');
 }
