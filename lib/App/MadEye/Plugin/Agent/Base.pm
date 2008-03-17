@@ -1,7 +1,7 @@
 package App::MadEye::Plugin::Agent::Base;
 use strict;
 use warnings;
-use base qw/Class::Component::Plugin/;
+use base qw/App::MadEye::Plugin::Base/;
 use Gearman::Client;
 use English;
 
