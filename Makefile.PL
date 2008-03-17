@@ -15,6 +15,7 @@ requires 'IPC::Open3';
 requires 'Kwalify';
 requires 'Pod::POM';
 requires 'List::Util';
+requires 'Log::Dispatch';
 
 features(
     'Agent::DBI' => [

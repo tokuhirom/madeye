@@ -6,6 +6,7 @@ our $VERSION = '0.02';
 use Class::Component;
 use Params::Validate;
 use UNIVERSAL::require;
+use Log::Dispatch;
 __PACKAGE__->load_components(qw/Plaggerize Autocall::InjectMethod/);
 
 my $context;
@@ -18,6 +19,8 @@ sub new {
     $self->{results} = {};
     $context = $self;
 
+    $self->_setup_logger;
+
     $self;
 }
 
@@ -27,7 +30,7 @@ sub run {
 
     unless (defined $self->class_component_methods->{'run_job'}) {
         $self->log(debug => 'use Worker::Simple');
-        $self->load_plugins(qw/Worker::Simple/);
+        $self->load_plugins(qw/Worker::Simple/ => {});
     }
 
     $self->run_hook('check');
@@ -100,6 +103,26 @@ sub _load_rule {
     }
     $class->use or die $@;
     return $class->new($rule->{config});
+}
+
+sub _setup_logger {
+    my $self = shift;
+
+    my $logger = Log::Dispatch->new;
+    for my $conf (@{ $self->conf->{global}->{logger} || [] }) {
+        my $class = "Log::Dispatch::$conf->{class}";
+        $class->use or die $@;
+        $logger->add( $class->new( %{ $conf->{config} } ) );
+    }
+    $self->{logger} = $logger;
+}
+
+sub log {
+    my ($self, $level, $msg) = @_;
+    die "missing level" unless $level;
+    die "missing msg" unless $msg;
+
+    $self->{logger}->log( level => $level, message => "$msg\n" );
 }
 
 1;
