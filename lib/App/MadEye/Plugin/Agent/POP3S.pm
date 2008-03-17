@@ -30,4 +30,32 @@ sub is_dead {
 }
 
 1;
+__END__
 
+=head1 NAME
+
+App::MadEye::Plugin::Agent::POP3S - monitoring pop3s server.
+
+=head1 SCHEMA
+
+    type: map
+    mapping:
+        target:
+            type: seq
+            required: yes
+            sequence:
+                - type: str
+        port:
+            required: yes
+            type: int
+        timeout:
+            required: no
+            type: int
+
+=head1 AUTHORS
+
+Tokuhiro Matsuno
+
+=head1 SEE ALSO
+
+L<IO::Socket::SSL>, L<App::MadEye>
