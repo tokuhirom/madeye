@@ -21,4 +21,30 @@ sub is_dead {
 }
   
 1;
+__END__
+
+=head1 NAME
+
+App::MadEye::Plugin::Agent::Process - monitoring process
+
+=head1 SCHEMA
+
+    type: map
+    mapping:
+        target:
+            type: seq
+            required: yes
+            sequence:
+                - type: str
+        pattern:
+            required: yes
+            type: str
+
+=head1 AUTHORS
+
+Tokuhiro Matsuno
+
+=head1 SEE ALSO
+
+L<pgrep>, L<App::MadEye>
 
