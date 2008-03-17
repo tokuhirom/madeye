@@ -2,7 +2,7 @@
 plugins:
   - module: Check::User
     config:
-      user: tokuhirom
+      user: tokuhiro
   - module: Check::Network
     config:
       urls:
