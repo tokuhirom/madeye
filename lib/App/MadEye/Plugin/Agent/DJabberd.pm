@@ -53,6 +53,8 @@ sub is_dead {
 1;
 __END__
 
+=for stopwords DJabberd
+
 =head1 NAME
 
 App::MadEye::Plugin::Agent::DJabberd - monitoring DJabberd
