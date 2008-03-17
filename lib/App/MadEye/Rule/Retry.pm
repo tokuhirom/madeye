@@ -21,5 +21,28 @@ sub dispatch {
 }
 
 1;
+
 # HTTPD とかは頻繁に再起動するので、一回ぐらい落ちてても無視してほしい。
+
+__END__
+
+=head1 NAME
+
+App::MadEye::Rule::Retry - please retry...
+
+=head1 SCHEMA
+
+    type: map
+    mapping:
+        expire_time:
+            type: int
+            required: yes
+        cache_root:
+            type: str
+            required: yes
+
+=head1 SEE ALSO
+
+L<App::MadEye>, L<Cache::FileCache>
+
 
