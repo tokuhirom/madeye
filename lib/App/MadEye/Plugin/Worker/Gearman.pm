@@ -34,6 +34,10 @@ sub run_workers : Hook('before_run_jobs') {
 
     my @child_pids = $self->_run_workers($context);
     $self->child_pids(\@child_pids);
+
+    $SIG{__DIE__} = sub {
+        $self->kill_workers();
+    };
 }
 
 sub _run_workers {
@@ -96,7 +100,7 @@ sub after_run_jobs : Hook('after_run_jobs') {
     $self->task_set->wait;
 
     $context->log(debug => 'kill children!');
-    $self->kill_workers($context);
+    $self->kill_workers();
 
     # DESTROYYYYYYYYY
     delete $self->{task_set};
