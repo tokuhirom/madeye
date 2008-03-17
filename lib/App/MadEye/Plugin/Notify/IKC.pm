@@ -28,6 +28,7 @@ sub _format {
 
     my $text = '';
     while (my ($module, $targets) = each %$args) {
+        $module = _moniker($module);
         $text .= "= $module\n" .  truncstr(_format_target($targets), $cutoff_length) . "\n";
     }
     $text;
@@ -42,6 +43,12 @@ sub _format_target {
         $text .= "$target->{message}\n";
     }
     $text;
+}
+
+sub _moniker {
+    my $module = shift;
+    $module =~ s/.+:://;
+    $module;
 }
 
 1;
