@@ -8,9 +8,14 @@ use Params::Validate;
 use UNIVERSAL::require;
 __PACKAGE__->load_components(qw/Plaggerize Autocall::InjectMethod/);
 
+my $context;
+sub context { $context }
+
 sub run {
     my $self = shift;
     $self->log(debug => 'run');
+
+    $context = $self;
 
     unless (defined $self->class_component_methods->{'run_job'}) {
         $self->log(debug => 'use Worker::Simple');
