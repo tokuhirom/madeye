@@ -11,13 +11,19 @@ __PACKAGE__->load_components(qw/Plaggerize Autocall::InjectMethod/);
 my $context;
 sub context { $context }
 
+sub new {
+    my $class = shift;
+    my $self = $class->SUPER::new(@_);
+
+    $self->{results} = {};
+    $context = $self;
+
+    $self;
+}
+
 sub run {
     my $self = shift;
     $self->log(debug => 'run');
-
-    $self->{results} = {};
-
-    $context = $self;
 
     unless (defined $self->class_component_methods->{'run_job'}) {
         $self->log(debug => 'use Worker::Simple');
