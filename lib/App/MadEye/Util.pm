@@ -25,20 +25,6 @@ sub timeout($$&) {    ## no critic.
     alarm $last_alarm; # restore
 }
 
-sub log_stopwatch ($&) {    ## no critic.
-    my ( $msg, $code ) = @_;
-
-    my $start = time;
-    $code->();
-    my $end = time;
-
-    my $time = $end - $start;
-
-    openlog 'MadEye', 'cons', 'local6';
-    syslog 'info', sprintf( $msg, $time );
-    closelog;
-}
-
 sub get_schema_from_pod {
     my $target = shift;
     my $proto = ref $target || $target;
