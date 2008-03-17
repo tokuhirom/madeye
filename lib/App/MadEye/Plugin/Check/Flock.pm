@@ -1,0 +1,49 @@
+package App::MadEye::Plugin::Check::Flock;
+use strict;
+use warnings;
+use base qw/App::MadEye::Plugin::Base/;
+use LWP::UserAgent;
+
+sub check : Hook('check') {
+    my ($self, $context, $args) = @_;
+
+    my $file_name = $self->config->{config}->{file} or die "missing file";
+    open $self->{lock_fh} , '>' , $file_name or die $!;
+    my $status = flock( $self->{lock_fh}, 6 ) or die "cannot get the lock";
+}
+
+sub release_lock : Hook('after_run_jobs') {
+    my ($self, $context, $args) = @_;
+
+    close($self->{lock_fh}); # release lock
+}
+
+1;
+__END__
+
+=head1 NAME
+
+MadEye::Plugin::Check::Flock - lock.
+
+=head1 SYNOPSIS
+
+    - module: Check::Flock
+      config:
+        file: /var/run/madeye
+
+=head1 SCHEMA
+
+    type: map
+    mapping:
+        file:
+            required: yes
+            type: str
+
+=head1 AUTHOR
+
+Tokuhiro Matsuno
+
+=head1 SEE ALSO
+
+L<App::MadEye>
+
