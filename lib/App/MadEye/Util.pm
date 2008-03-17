@@ -9,6 +9,7 @@ use Sys::Syslog qw/:DEFAULT/;
 
 sub timeout($$&) {    ## no critic.
     my ( $secs, $msg, $code ) = @_;
+    App::MadEye->context->log(debug => "run timer: '$msg', $secs");;
     my $last_alarm = 0;
     eval {
         local $SIG{ALRM} = sub { die "Time out error: $msg" };
