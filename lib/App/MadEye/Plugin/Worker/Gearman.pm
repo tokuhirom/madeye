@@ -15,7 +15,6 @@ use Scalar::Util qw/weaken/;
 
 __PACKAGE__->mk_accessors(qw/task_set child_pids gearman_client/);
 
-our $TASK_TIMEOUT = 60;  # TODO: configurable
 our $CHILD_TIMEOUT = 60;  # TODO: configurable
 
 sub new {
@@ -64,7 +63,7 @@ sub run_job :Method {
     $self->task_set->add_task(
         'watch',
         freeze($args), +{
-            timeout => $TASK_TIMEOUT,
+            timeout => $self->task_timeout(),
             on_fail => sub {
                 warn "GEARMAN ERROR: " . Dump($args);
             },
@@ -135,9 +134,8 @@ sub run_worker {
             my $args = thaw( $_[0]->arg );
 
             $context->log( debug => "watching $args->{target} by $args->{plugin}" );
-
             my $result = \undef;
-            timeout $TASK_TIMEOUT, "watching $args->{target} $args->{plugin}", sub {
+            timeout $self->task_timeout(), "watching $args->{target} $args->{plugin}", sub {
                 if ( my $message = $args->{plugin}->is_dead( $args->{target} ) ) {
                     $result = +{
                         message => $message,
@@ -150,9 +148,19 @@ sub run_worker {
         }
     );
 
-    timeout $CHILD_TIMEOUT, 'work child', sub {
+    timeout $self->child_timeout(), 'work child', sub {
         $worker->work while 1;
     };
+}
+
+sub task_timeout {
+    my $self = shift;
+    $self->config->{config}->{task_timeout} || 10;
+}
+
+sub child_timeout {
+    my $self = shift;
+    $self->config->{config}->{child_timeout} || 60;
 }
 
 1;
@@ -176,6 +184,12 @@ App::MadEye::Plugin::Worker::Gearman - work with gearman
             sequence:
                 - type: str
             required: yes
+        task_timeout:
+            type: int
+            required: no
+        child_timeout:
+            type: int
+            required: no
 
 =head1 AUTHOR
 
