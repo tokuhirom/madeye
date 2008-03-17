@@ -42,9 +42,26 @@ App::MadEye::Plugin::Agent::DBI - monitoring DB
 
     - module: Agent::DBI
       config:
-        dsn: DBI:mysql:database=foo
-        user: root
-        password: ~
+        target:
+           - DBI:mysql:database=foo
+         user: root
+         password: ~
+
+=head1 SCHEMA
+
+    type: map
+    mapping:
+        target:
+            type: seq
+            required: yes
+            sequence:
+                - type: str
+        user:
+            required: yes
+            type: str
+        password:
+            required: yes
+            type: str
 
 =head1 AUTHORS
 
