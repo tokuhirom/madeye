@@ -12,6 +12,7 @@ sub is_dead {
 
     my $user     = $self->config->{config}->{user} or die "missing user";
     my $password = $self->config->{config}->{password};
+    my $threshold = $self->config->{config}->{threshold};
 
     my $dbh = DBI->connect(
         $dsn,
@@ -39,7 +40,7 @@ sub is_dead {
 
         my $rmlp = $row->{'Read_Master_Log_Pos'};
         my $emlp = $row->{'Exec_Master_Log_Pos'};
-        if ( $rmlp > $emlp + 10**5 ) { # XXX configurable.
+        if ( abs($rmlp - $emlp) > $threshold ) {
             return "considerable delay : $rmlp $emlp\n";
         }
 
@@ -71,6 +72,9 @@ App::MadEye::Plugin::Agent::MySQLSlave - monitoring mysql slave.
         password:
             required: yes
             type: any
+        threshold:
+            required: yes
+            type: int
 
 =head1 AUTHORS
 
