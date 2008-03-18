@@ -10,6 +10,7 @@ sub notify : Hook('notify') {
     my ($self, $context, $args) = @_;
 
     my $conf = $self->{config}->{config};
+    my $subject   = $conf->{subject} || '%s alert !!!';
     my $from_addr = $conf->{from_addr} or die "missing from_addr";
     my $to_addr   = $conf->{to_addr} or die "missing to_addr";
 
@@ -19,7 +20,7 @@ sub notify : Hook('notify') {
         my $mail = MIME::Lite->new(
             'To'        => $from_addr,
             'From'      => $to_addr,
-            'Subject'   => "$plugin alert !!!",
+            'Subject'   => sprintf($subject, $plugin),
             'Data'      => $self->_format( $plugin, $results ),
         );
         # warn $mail->as_string;
@@ -50,6 +51,9 @@ App::MadEye::Plugin::Notify::Email - notify by email
 
     type: map
     mapping:
+        subject:
+            type: str
+            required: no
         from_addr:
             type: str
             required: yes
