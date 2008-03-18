@@ -67,6 +67,25 @@ App::MadEye::Plugin::Agent::DJabberd - monitoring DJabberd
         open_socket_timeout: 10
         select_timeout: 3
 
+=head1 SCHEMA
+
+    type: map
+    mapping:
+        target:
+            type: seq
+            required: yes
+            sequence:
+                - type: str
+        admin_port:
+            required: yes
+            type: int
+        open_socket_timeout:
+            required: no
+            type: int
+        select_timeout:
+            required: no
+            type: int
+
 =head1 SEE ALSO
 
 L<App::MadEye>, L<DJabberd>
