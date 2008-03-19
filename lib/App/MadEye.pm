@@ -84,6 +84,7 @@ sub _should_add_result {
                 $self,
                 +{
                     target => $args->{target},
+                    plugin => $args->{plugin},
                 }
             );
             return 0 if $ret;
@@ -122,7 +123,7 @@ sub log {
     die "missing level" unless $level;
     die "missing msg" unless $msg;
 
-    $self->{logger}->log( level => $level, message => "$msg\n" );
+    $self->{logger}->log( level => $level, message => "[$level]$msg\n" );
 }
 
 1;
