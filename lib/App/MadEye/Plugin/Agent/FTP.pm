@@ -52,7 +52,7 @@ __END__
 
 =head1 NAME
 
-App::MadEye::Plugin::Agent::FTP - monitoring ftp
+App::MadEye::Plugin::Agent::FTP - monitoring FTP
 
 =head1 SCHEMA
 
