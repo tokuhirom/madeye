@@ -20,7 +20,9 @@ sub timeout($$&) {    ## no critic.
         $code->();
     };
     if ($@) {
-        warn $@;
+        my $err = $@;
+        App::MadEye->context->log('error' => $err);
+        warn $err;
     }
     alarm $last_alarm; # restore
 }
