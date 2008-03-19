@@ -13,6 +13,8 @@ sub dispatch {
 
     my $key = YAML::Dump($args->{target});
 
+    $context->log(info => "Retry: $args->{target}, $args->{plugin}");
+
     my $cache = Cache::FileCache->new( { cache_root => $cache_root, } );
     my $retry = $cache->get($key) ? 0 : 1;
     $cache->set($key => "Boofy", $expire_time);
