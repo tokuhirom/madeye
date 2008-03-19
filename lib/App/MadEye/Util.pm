@@ -9,6 +9,7 @@ use Sys::Syslog qw/:DEFAULT/;
 use Pod::POM ();
 use List::Util qw/first/;
 use YAML ();
+use Time::HiRes qw/gettimeofday/;
 
 sub timeout($$&) {    ## no critic.
     my ( $secs, $msg, $code ) = @_;
@@ -17,7 +18,10 @@ sub timeout($$&) {    ## no critic.
     eval {
         local $SIG{ALRM} = sub { die "Time out error: $msg" };
         $last_alarm = alarm $secs;
-        $code->();
+
+        my $start_time = gettimeofday();
+            $code->();
+        App::MadEye->context->log('debug' => "stopwatch: " . (gettimeofday() - $start_time));
     };
     if ($@) {
         my $err = $@;
