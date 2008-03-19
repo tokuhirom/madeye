@@ -12,7 +12,7 @@ sub is_dead {
 
     my $user     = $self->config->{config}->{user} or die "missing user";
     my $password = $self->config->{config}->{password};
-    my $threshold = $self->config->{config}->{threshold};
+    my $threshold = $self->config->{config}->{threshold} or die "missing threshold";
 
     my $dbh = DBI->connect(
         $dsn,
