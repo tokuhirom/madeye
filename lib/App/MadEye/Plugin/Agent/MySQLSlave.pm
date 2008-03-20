@@ -19,9 +19,9 @@ sub is_dead {
         $user,
         $password,
         { RaiseError => 1, AutoCommit => 1 }
-    ) or die;
+    ) or return 'cannot connect';
     my $sth = $dbh->prepare(q{SHOW SLAVE STATUS;});
-    $sth->execute() or die $dbh->errstr;
+    $sth->execute() or return 'DBI error: ' . $dbh->errstr;
 
     if (my $row = $sth->fetchrow_hashref) {
         # see. http://dev.mysql.com/doc/refman/4.1/ja/show-slave-status.html
