@@ -1,5 +1,18 @@
 Revision history for Perl extension App::MadEye
 
+0.04
+
+    (FEATURE)
+
+    - timeout is now normal error.
+    - added new plugins
+        - Agent::Sleep (debugging module)
+        - Agent::SSLExpireDate
+
+    (MISC)
+
+    - fixed some pod bug.
+
 0.03
 
     WARNINGS: this release has some drastic changes..

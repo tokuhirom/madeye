@@ -53,3 +53,5 @@ META.yml
 README
 t/00_compile.t
 madeye.pl
+lib/App/MadEye/Plugin/Agent/SSLExpireDate.pm
+lib/App/MadEye/Plugin/Agent/Sleep.pm

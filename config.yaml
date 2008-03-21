@@ -6,6 +6,7 @@ global:
         name: screen
         min_level: debug
         stderr: 1
+
 plugins:
   - module: Check::User
     config:
@@ -18,7 +19,7 @@ plugins:
 
   - module: Worker::Simple
     config:
-      task_timeout: 4
+      task_timeout: 10
 
 # - module: Worker::Gearman
 #   config:
@@ -33,19 +34,40 @@ plugins:
 #     target: http://livedoor.com/
 #     user_agent: DoCoMo/1.0/P504i/c30/TB
 
-  - module: Agent::FTP
+# - module: Agent::SSLExpireDate
+#   config:
+#     target:
+#       - admin.ktaf.jp
+#       - blomotion.jp
+#       - caspeee.jp
+#       - melorin.jp
+#       - secondbuzz.jp
+#       - ssl.mobilefactory.jp
+#       - wassr.com
+#       - wassr.jp
+#     type:   https
+#     duration: 7days
+
+  - module: Agent::SSLExpireDate
     config:
-      port: 21
       target:
-       - ftp.ring.gr.jp
-       - ftp.ring.gr.jp
-       - ring.shibaura-it.ac.jp
-      message: FTP server raady.
-    rule:
-      - module: Retry
-        config:
-          expire_time: 30
-          cache_root: /tmp/foo
+        - mail.mfac.jp:25
+      type: ssl
+      duration: 1year
+
+# - module: Agent::FTP
+#   config:
+#     port: 21
+#     target:
+#      - ftp.ring.gr.jp
+#      - ftp.ring.gr.jp
+#      - ring.shibaura-it.ac.jp
+#     message: FTP server raady.
+#   rule:
+#     - module: Retry
+#       config:
+#         expire_time: 30
+#         cache_root: /tmp/foo
 
 #     - module: DateTimeCron
 #       config:
@@ -119,6 +141,12 @@ plugins:
 #     target:
 #       - 127.0.0.1
 #       - 192.168.2.3
+
+# - module: Agent::Sleep
+#   config:
+#     target:
+#       - 127.0.0.1
+#     sleep: 1000
 
 # - module: Agent::SMTP
 #   config:
