@@ -2,7 +2,7 @@ package App::MadEye::Plugin::Agent::SNMP::Disk;
 use strict;
 use warnings;
 use App::MadEye::Plugin::Agent::Base;
-use Net::SNMP;
+use App::MadEye::Util;
 
 my $oid_map = {
     hrStorageType      => '.1.3.6.1.2.1.25.2.3.1.2',
@@ -16,13 +16,24 @@ sub is_dead {
     my ($self, $host) = @_;
 
     my $threshold = $self->config->{config}->{threshold} or die "missing threshold";
-    my $community = $self->config->{config}->{community} or die "missing community";
-    my $port      = $self->config->{config}->{port}    || 161;
-    my $timeout   = $self->config->{config}->{timeout} || 10;
 
-    my $session = open_session($host, $community, $port, $timeout);
-    my $response = fetch_data($session);
-    $session->close();
+    my $response = snmp_session(
+        $self,
+        $host => sub {
+            my $session = shift;
+
+            return +{
+                map {
+                    $_ => (
+                        $session->get_table(
+                            -baseoid => $oid_map->{$_},
+                        ) or die "cannot get a $_ : " . $session->error
+                    )
+                }
+                qw/hrStorageDescr hrStorageUsed hrStorageType hrStorageSize/
+            };
+        },
+    );
 
     my $result = '';
     each_storage($response => sub {
@@ -36,35 +47,6 @@ sub is_dead {
         }
     });
     return $result;
-}
-
-sub open_session {
-    my ($host, $community, $port, $timeout) = @_;
-    my ($session, $error) = Net::SNMP->session(
-        -hostname  => $host,
-        -community => $community,
-        -port      => $port,
-        -timeout   => $timeout,
-    );
-    if (!defined($session)) {
-        warn "ERROR: $error.\n";
-    }
-    $session;
-}
-
-sub fetch_data {
-    my $session = shift;
-
-    return +{
-        map {
-            $_ => (
-                $session->get_table(
-                    -baseoid => $oid_map->{$_},
-                ) or die "cannot get a $_ : " . $session->error
-            )
-        }
-        qw/hrStorageDescr hrStorageUsed hrStorageType hrStorageSize/
-    };
 }
 
 sub each_storage {
