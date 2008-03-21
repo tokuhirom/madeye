@@ -23,9 +23,11 @@ sub is_dead {
 1;
 __END__
 
+=for stopwords SSL
+
 =head1 NAME
 
-App::MadEye::Plugin::Agent::SSLExpireDate - monitoring SSLExpireDate
+App::MadEye::Plugin::Agent::SSLExpireDate - monitoring SSL expire date
 
 =head1 SCHEMA
 
