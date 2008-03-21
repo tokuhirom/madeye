@@ -9,17 +9,17 @@ plugins:
        - http://livedoor.com/
        - http://google.com/
 
-# - module: Worker::Simple
-#   config:
-#     timeout: 1
-
-  - module: Worker::Gearman
+  - module: Worker::Simple
     config:
-      fork_num: 3
-      task_timeout: 20
-      child_timeout: 7
-      gearman_servers:
-        - 127.0.0.1
+      task_timeout: 4
+
+# - module: Worker::Gearman
+#   config:
+#     fork_num: 3
+#     task_timeout: 20
+#     child_timeout: 40
+#     gearman_servers:
+#       - 127.0.0.1
 
 # - module: Agent::HTTP
 #   config:

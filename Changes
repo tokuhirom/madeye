@@ -1,5 +1,26 @@
 Revision history for Perl extension App::MadEye
 
+0.03
+
+    WARNINGS: this release has some drastic changes..
+
+    (FEATURE)
+    - validate schema with Kwalify
+    - added new plugins
+        - Notify::IRC
+        - Check::Flock
+        - Agent::MySQLSlave
+        - Agent::SNMP::Disk
+        - Agent::SNMP::Process
+        - use Log::Dispatch, a pluggable logger.
+
+    (BUG FIX)
+    - Worker::Gearman: kill zombie.
+
+    (MISC)
+    - added documents.
+    - some variables are now configurable
+
 0.02
 
     - oops. 0.01 is broken... version 0.01 does not contains madeye.pl...(REPORTED BY hirose31++)
