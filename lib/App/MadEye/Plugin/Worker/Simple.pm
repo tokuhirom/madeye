@@ -11,7 +11,8 @@ sub run_job :Method {
     $context->log( debug => "watching $args->{target} by $args->{plugin}" );
 
     my $timeout = $self->config->{config}->{task_timeout} or die "missing task_timeout";
-    timeout $timeout, "watching $args->{target} $args->{plugin}", sub {
+
+    my $error = timeout $timeout, "watching $args->{target} $args->{plugin}", sub {
         if ( my $message = $args->{plugin}->is_dead( $args->{target} ) ) {
             $context->add_result(
                 plugin  => $args->{plugin},
@@ -20,6 +21,14 @@ sub run_job :Method {
             );
         }
     };
+
+    if ($error) {
+        $context->add_result(
+            plugin  => $args->{plugin},
+            target  => $args->{target},
+            message => $error,
+        );
+    }
 
     $context->log( debug => "finished $args->{target} by $args->{plugin}" );
 }
