@@ -16,6 +16,7 @@ requires 'Kwalify';
 requires 'Pod::POM';
 requires 'List::Util';
 requires 'Log::Dispatch';
+requires 'Net::SNMP';
 
 features(
     'Agent::DBI' => [
