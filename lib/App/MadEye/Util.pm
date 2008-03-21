@@ -12,7 +12,7 @@ use YAML ();
 use Time::HiRes qw/gettimeofday/;
 use Net::SNMP;
 
-sub context () { App::MadEye->context }
+sub context () { App::MadEye->context } ## no critic.
 
 sub timeout($$&) {    ## no critic.
     my ( $secs, $msg, $code ) = @_;
