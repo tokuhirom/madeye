@@ -37,6 +37,8 @@ sub is_dead {
 1;
 __END__
 
+=for stopwords mogilefsd
+
 =head1 NAME
 
 App::MadEye::Plugin::Agent::Mogilefsd - monitoring mogilefsd

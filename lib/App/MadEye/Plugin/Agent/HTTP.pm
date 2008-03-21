@@ -25,9 +25,11 @@ sub is_dead {
 1;
 __END__
 
+=for stopwords HTTP
+
 =head1 NAME
 
-App::MadEye::Plugin::Agent::HTTP - check http.
+App::MadEye::Plugin::Agent::HTTP - check HTTP
 
 =head1 SCHEMA
 

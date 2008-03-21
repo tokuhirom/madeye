@@ -35,9 +35,11 @@ sub is_dead {
 1;
 __END__
 
+=for stopwords Perlbal
+
 =head1 NAME
 
-App::MadEye::Plugin::Agent::Perlbal - check perlbal.
+App::MadEye::Plugin::Agent::Perlbal - check Perlbal.
 
 =head1 SCHEMA
 

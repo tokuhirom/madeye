@@ -62,6 +62,8 @@ sub is_dead {
 1;
 __END__
 
+=for stopwords gearmand
+
 =head1 NAME
 
 App::MadEye::Plugin::Agent::Gearmand - monitoring gearmand

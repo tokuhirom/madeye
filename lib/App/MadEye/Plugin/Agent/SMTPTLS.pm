@@ -32,6 +32,8 @@ sub is_dead {
 1;
 __END__
 
+=for stopwords smtptls
+
 =head1 NAME
 
 App::MadEye::Plugin::Agent::SMTPTLS - check smtptls.

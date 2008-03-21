@@ -25,7 +25,7 @@ __END__
 
 =head1 NAME
 
-App::MadEye::Plugin::Agent::SMTP - check smtp.
+App::MadEye::Plugin::Agent::SMTP - check SMTP.
 
 =head1 SCHEMA
 
