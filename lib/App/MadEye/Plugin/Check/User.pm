@@ -33,3 +33,6 @@ App::MadEye::Plugin::Check::User - check uid
 
 Tokuhiro Matsuno
 
+=head1 SEE ALSO
+
+L<App::MadEye>

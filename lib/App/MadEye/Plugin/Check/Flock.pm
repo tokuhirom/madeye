@@ -23,7 +23,7 @@ __END__
 
 =head1 NAME
 
-MadEye::Plugin::Check::Flock - lock.
+App::MadEye::Plugin::Check::Flock - lock.
 
 =head1 SYNOPSIS
 

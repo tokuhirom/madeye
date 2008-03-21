@@ -25,7 +25,7 @@ __END__
 
 =head1 NAME
 
-MadEye::Plugin::Check::User - network is alive?
+App::MadEye::Plugin::Check::User - network is alive?
 
 =head1 SYNOPSIS
 
@@ -39,3 +39,6 @@ MadEye::Plugin::Check::User - network is alive?
 
 Tokuhiro Matsuno
 
+=head1 SEE ALSO
+
+L<App::MadEye>
