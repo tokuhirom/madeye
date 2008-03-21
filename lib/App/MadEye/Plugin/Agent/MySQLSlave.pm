@@ -14,12 +14,19 @@ sub is_dead {
     my $password = $self->config->{config}->{password};
     my $threshold = $self->config->{config}->{threshold} or die "missing threshold";
 
-    my $dbh = DBI->connect(
-        $dsn,
-        $user,
-        $password,
-        { RaiseError => 1, AutoCommit => 1 }
-    ) or return 'cannot connect';
+    my $dbh;
+    eval {
+        $dbh = DBI->connect(
+            $dsn,
+            $user,
+            $password,
+            { RaiseError => 1, AutoCommit => 1 }
+        ) or return 'cannot connect';
+    };
+    if ($@) {
+        return $@;
+    }
+
     my $sth = $dbh->prepare(q{SHOW SLAVE STATUS;});
     $sth->execute() or return 'DBI error: ' . $dbh->errstr;
 
