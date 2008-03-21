@@ -2,7 +2,8 @@ package App::MadEye::Plugin::Agent::SNMP::Process;
 use strict;
 use warnings;
 use App::MadEye::Plugin::Agent::Base;
-use Net::SNMP;
+use App::MadEye::Util;
+use List::Util qw/first/;
 
 my $hrSWRunPath = '.1.3.6.1.2.1.25.4.2.1.4';
 
@@ -11,7 +12,8 @@ sub is_dead {
 
     my $process   = $self->config->{config}->{process}   or die "missing process";
 
-    my $response = $self->snmp_session(
+    my $response = snmp_session(
+        $self,
         $host => sub {
             my $session = shift;
             my $response = $session->get_table(
@@ -21,37 +23,10 @@ sub is_dead {
         }
     );
 
-    my $process_cnt = scalar grep { $_ eq $process } values %$response;
-
-    App::MadEye->context->log(debug => "$host has $process_cnt $process");
-
-    if ($process_cnt > 0) {
+    if (first { $_ eq $process } values %$response) {
         return; # alive
     } else {
-        return $process_cnt;
-    }
-}
-
-sub snmp_session {
-    my ($self, $host, $callback, ) = @_;
-
-    my $community = $self->config->{config}->{community} or die "missing community";
-    my $port      = $self->config->{config}->{port}    || 161;
-    my $timeout   = $self->config->{config}->{timeout} || 10;
-
-    my ($session, $error) = Net::SNMP->session(
-        -hostname  => $host,
-        -community => $community,
-        -port      => $port,
-        -timeout   => $timeout,
-    );
-
-    if (not defined($session)) {
-        die "ERROR: $error.\n";
-    } else {
-        my $response = $callback->($session);
-        $session->close();
-        return $response;
+        return "404 $process not found";
     }
 }
 
