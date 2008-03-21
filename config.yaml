@@ -1,8 +1,15 @@
 ---
+global:
+  logger:
+    - class: Screen
+      config:
+        name: screen
+        min_level: debug
+        stderr: 1
 plugins:
   - module: Check::User
     config:
-      user: tokuhiro
+      user: tokuhirom
   - module: Check::Network
     config:
       urls:
@@ -28,6 +35,7 @@ plugins:
 
   - module: Agent::FTP
     config:
+      port: 21
       target:
        - ftp.ring.gr.jp
        - ftp.ring.gr.jp
@@ -36,7 +44,7 @@ plugins:
     rule:
       - module: Retry
         config:
-          expire_time: 30m
+          expire_time: 30
           cache_root: /tmp/foo
 
 #     - module: DateTimeCron
@@ -119,8 +127,8 @@ plugins:
 #       - 192.168.2.3
 
   - module: Notify::Debug
-  - module: Notify::Email
-    config:
-      from_addr: tokuhirom@example.com
-      to_addr  : tokuhirom@example.com
+# - module: Notify::Email
+#   config:
+#     from_addr: tokuhirom@example.com
+#     to_addr  : tokuhirom@example.com
 
