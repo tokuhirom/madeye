@@ -123,7 +123,7 @@ sub log {
     die "missing level" unless $level;
     die "missing msg" unless $msg;
 
-    $self->{logger}->log( level => $level, message => "[$level]$msg\n" );
+    $self->{logger}->log( level => $level, message => "[$level] $msg\n" );
 }
 
 1;
