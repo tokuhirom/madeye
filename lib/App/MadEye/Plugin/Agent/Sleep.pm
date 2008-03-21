@@ -20,7 +20,7 @@ __END__
 
 =head1 NAME
 
-App::MadEye::Plugin::Agent::Sleep - everytime timeout
+App::MadEye::Plugin::Agent::Sleep - every time timeout
 
 =head1 DESCRIPTION
 
