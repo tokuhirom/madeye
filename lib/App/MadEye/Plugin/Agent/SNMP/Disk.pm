@@ -94,6 +94,9 @@ App::MadEye::Plugin::Agent::SNMP::Disk - monitoring disk
         timeout:
             required: no
             type: int
+        retries:
+            required: no
+            type: int
 
 =head1 AUTHORS
 
