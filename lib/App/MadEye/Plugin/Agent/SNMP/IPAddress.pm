@@ -22,8 +22,8 @@ sub is_dead {
         },
     );
 
-    my $got      = join ' ', sort { $a cmp $b } @{ $target->{ip} };
-    my $expected = join ' ', sort { $a cmp $b } values %$response;
+    my $expected = join ' ', sort { $a cmp $b } @{ $target->{ip} };
+    my $got      = join ' ', sort { $a cmp $b } values %$response;
 
     context->log('debug' => "got: $got, expected: $expected");
 
