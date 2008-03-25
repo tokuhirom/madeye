@@ -2,8 +2,6 @@ package App::MadEye::Plugin::Agent::Base;
 use strict;
 use warnings;
 use base qw/App::MadEye::Plugin::Base/;
-use Gearman::Client;
-use English;
 
 sub import {
     my $class = shift;
@@ -14,6 +12,9 @@ sub import {
 
     *{"$pkg\::run_jobs"} = sub :Hook('run_jobs') {
         my ($self, $context, $args) = @_;
+
+        $context->log( info => "run " . ref $self );
+
         my $target = $self->config->{config}->{target};
            $target = [$target] unless ref $target eq 'ARRAY';
 
