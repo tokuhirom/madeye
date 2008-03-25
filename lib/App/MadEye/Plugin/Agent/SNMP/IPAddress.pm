@@ -30,7 +30,7 @@ sub is_dead {
     if ($got eq $expected) {
         return; # alive
     } else {
-        return "'$got' ne '$expected'";
+        return "got: '$got' expected: '$expected'";
     }
 }
 
