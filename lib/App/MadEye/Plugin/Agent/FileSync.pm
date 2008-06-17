@@ -5,6 +5,7 @@ use App::MadEye::Plugin::Agent::Base;
 use Net::SSH qw/ssh_cmd/;
 use Params::Validate ':all';
 use YAML ();
+use Text::Diff qw(diff);
 
 my $drivers = {
     svn => sub {
@@ -36,7 +37,7 @@ sub is_dead {
     my $src = $get->( $target->{src} );
     my $dst = $get->( $target->{dst} );
     if ($src ne $dst) {
-        return 'difference.';
+        return diff(\$src, \$dst);
     } else {
         return; # success
     }
