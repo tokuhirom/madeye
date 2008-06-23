@@ -31,7 +31,9 @@ plugins:
 
 # - module: Agent::HTTP
 #   config:
-#     target: http://livedoor.com/
+#     tiemout: 5
+#     target:
+#       - http://livedoor.com/
 #     user_agent: DoCoMo/1.0/P504i/c30/TB
 
 # - module: Agent::FTP
@@ -55,6 +57,7 @@ plugins:
 
 # - module: Agent::HTTP
 #   config:
+#     timeout: 6
 #     target:
 #      - http://livedoor.com/
 #      - http://ljkdlsjaflfvedoor.com/
@@ -66,8 +69,10 @@ plugins:
 #       - 127.0.0.1
 #     admin_port: 33562
 
-# - module: Agent::SNMPDisk
+# - module: Agent::SNMP::Disk
 #   config:
+#     threshold: 50
+#     community: public
 #     target:
 #       - 127.0.0.1
 
@@ -117,6 +122,7 @@ plugins:
 
 # - module: Agent::Ping
 #   config:
+#     timeout: 6
 #     target:
 #       - 127.0.0.1
 #       - 192.168.2.3
