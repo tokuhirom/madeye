@@ -3,13 +3,14 @@ use strict;
 use warnings;
 use base qw/App::MadEye::Plugin::Base/;
 use LWP::UserAgent;
+use Fcntl ":flock";
 
 sub check : Hook('check') {
     my ($self, $context, $args) = @_;
 
     my $file_name = $self->config->{config}->{file} or die "missing file";
     open $self->{lock_fh} , '>' , $file_name or die $!;
-    my $status = flock( $self->{lock_fh}, 6 ) or die "cannot get the lock";
+    my $status = flock( $self->{lock_fh}, LOCK_EX|LOCK_NB ) or die "cannot get the lock";
 }
 
 sub release_lock : Hook('after_run_jobs') {
