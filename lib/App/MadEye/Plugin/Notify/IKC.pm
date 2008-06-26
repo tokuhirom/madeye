@@ -5,7 +5,7 @@ use base qw/App::MadEye::Plugin::Base/;
 use Text::Truncate qw/truncstr/;
 use POE::Component::IKC::ClientLite;
 
-sub notify :Hook('notify') {
+sub notify :Hook {
     my ($self, $context, $args) = @_;
 
     my $config = $self->config->{config};

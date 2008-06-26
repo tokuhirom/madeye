@@ -5,7 +5,7 @@ use base qw/App::MadEye::Plugin::Base/;
 use LWP::UserAgent;
 use Fcntl ":flock";
 
-sub check : Hook('check') {
+sub check : Hook {
     my ($self, $context, $args) = @_;
 
     my $file_name = $self->config->{config}->{file} or die "missing file";
@@ -13,7 +13,7 @@ sub check : Hook('check') {
     my $status = flock( $self->{lock_fh}, LOCK_EX|LOCK_NB ) or die "cannot get the lock";
 }
 
-sub release_lock : Hook('after_run_jobs') {
+sub after_run_jobs : Hook {
     my ($self, $context, $args) = @_;
 
     close($self->{lock_fh}); # release lock

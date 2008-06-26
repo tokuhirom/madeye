@@ -29,7 +29,7 @@ sub new {
     $self;
 }
 
-sub run_workers : Hook('before_run_jobs') {
+sub before_run_jobs : Hook {
     my ($self, $context) = @_;
 
     my @child_pids = $self->_run_workers($context);
@@ -93,7 +93,7 @@ sub run_job :Method {
     );
 }
 
-sub after_run_jobs : Hook('after_run_jobs') {
+sub after_run_jobs : Hook {
     my ($self, $context, $args) = @_;
 
     $context->log(debug => 'wait children!');

@@ -6,7 +6,7 @@ use Params::Validate;
 use MIME::Lite;
 use DateTime;
 
-sub notify : Hook('notify') {
+sub notify : Hook {
     my ($self, $context, $args) = @_;
 
     my $conf = $self->{config}->{config};

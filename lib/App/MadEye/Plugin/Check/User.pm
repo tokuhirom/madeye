@@ -4,7 +4,7 @@ use warnings;
 use base qw/Class::Component::Plugin/;
 use POSIX qw(getuid getpwuid);
 
-sub check :Hook('check') {
+sub check :Hook {
     my ($self, $context, $args) = @_;
 
     my $user = $self->config->{config}->{user};
