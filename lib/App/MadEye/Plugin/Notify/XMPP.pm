@@ -16,7 +16,7 @@ sub notify : Hook {
 
     my ( $username, $componentname ) = split /@/, $config->{jid};
     $config->{host} ||= $componentname;
-    my $client = Net::XMPP::Client->new( debuglevel => 2 );
+    my $client = Net::XMPP::Client->new( debuglevel => 0 );
     my $connectattempts = 3;
     my $connectsleep    = 1;
     my ($status, $error);
