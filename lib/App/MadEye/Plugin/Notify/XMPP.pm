@@ -6,7 +6,6 @@ use Text::Truncate qw/truncstr/;
 use Net::XMPP;
 use Carp;
 use Data::Dumper;
-use Encode::DoubleEncodedUTF8;
 use Encode;
 use XML::Stream;
 
@@ -33,7 +32,7 @@ sub notify : Hook {
         sleep $connectsleep;
     }
     unless (defined $status) {
-        carp "[FATAL] failed to connect ".join(':',$config->{host}, $config->{port}) . ' : ' . decode('utf-8-de', $client->GetErrorCode->{text});
+        carp "[FATAL] failed to connect ".join(':',$config->{host}, $config->{port}) . ' : ' . $client->GetErrorCode->{text};
         return;
     }
 
