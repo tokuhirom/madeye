@@ -49,6 +49,7 @@ features(
     ],
 );
 
+tests('t/*.t t/*/*.t t/*/*/*.t t/*/*/*/*.t');
 build_requires 'Test::More';
 build_requires 'YAML';
 use_test_base;
