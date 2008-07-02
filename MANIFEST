@@ -21,6 +21,7 @@ lib/App/MadEye/Plugin/Agent/Base.pm
 lib/App/MadEye/Plugin/Agent/DBI.pm
 lib/App/MadEye/Plugin/Agent/DJabberd.pm
 lib/App/MadEye/Plugin/Agent/DNS.pm
+lib/App/MadEye/Plugin/Agent/FileSync.pm
 lib/App/MadEye/Plugin/Agent/FTP.pm
 lib/App/MadEye/Plugin/Agent/Gearmand.pm
 lib/App/MadEye/Plugin/Agent/HTTP.pm
@@ -30,10 +31,13 @@ lib/App/MadEye/Plugin/Agent/Perlbal.pm
 lib/App/MadEye/Plugin/Agent/Ping.pm
 lib/App/MadEye/Plugin/Agent/POP3S.pm
 lib/App/MadEye/Plugin/Agent/Process.pm
+lib/App/MadEye/Plugin/Agent/Sleep.pm
 lib/App/MadEye/Plugin/Agent/SMTP.pm
 lib/App/MadEye/Plugin/Agent/SMTPTLS.pm
 lib/App/MadEye/Plugin/Agent/SNMP/Disk.pm
+lib/App/MadEye/Plugin/Agent/SNMP/IPAddress.pm
 lib/App/MadEye/Plugin/Agent/SNMP/Process.pm
+lib/App/MadEye/Plugin/Agent/SSLExpireDate.pm
 lib/App/MadEye/Plugin/Base.pm
 lib/App/MadEye/Plugin/Check/Flock.pm
 lib/App/MadEye/Plugin/Check/Network.pm
@@ -41,6 +45,8 @@ lib/App/MadEye/Plugin/Check/User.pm
 lib/App/MadEye/Plugin/Notify/Debug.pm
 lib/App/MadEye/Plugin/Notify/Email.pm
 lib/App/MadEye/Plugin/Notify/IKC.pm
+lib/App/MadEye/Plugin/Notify/Nakanobu.pm
+lib/App/MadEye/Plugin/Notify/XMPP.pm
 lib/App/MadEye/Plugin/Worker/Gearman.pm
 lib/App/MadEye/Plugin/Worker/Simple.pm
 lib/App/MadEye/Rule.pm
@@ -52,6 +58,6 @@ MANIFEST			This list of files
 META.yml
 README
 t/00_compile.t
+t/100_bugs/001_autoload_worker_simple.t
+t/100_bugs/002_results.t
 madeye.pl
-lib/App/MadEye/Plugin/Agent/SSLExpireDate.pm
-lib/App/MadEye/Plugin/Agent/Sleep.pm

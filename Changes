@@ -1,5 +1,20 @@
 Revision history for Perl extension App::MadEye
 
+0.05
+
+    (FEATURE)
+
+    - rule for Plugin::Notify.
+    - added Plugin::Notify::XMPP
+    - added Plugin::Notify::Nakanobu.
+    - added Plugin::Agent::FileSync.
+    - added Plugin::Agent::SNMP::IPAddress.
+    - Plugin::Agent::SNMP::Disk: you can set retry
+
+    (BUGS)
+
+    - fixed Worker::Simple autoload feature.
+
 0.04
 
     (FEATURE)
