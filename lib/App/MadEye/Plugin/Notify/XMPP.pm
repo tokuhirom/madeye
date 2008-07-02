@@ -126,6 +126,8 @@ sub _moniker {
 1;
 __END__
 
+=for stopwords XMPP
+
 =head1 NAME
 
 App::MadEye::Plugin::Notify::XMPP - notify with XMPP
@@ -174,7 +176,7 @@ Tokuhiro Matsuno
 
 =head1 THANKS TO
 
-hirose31++ # a lot of code stallen from http://d.hatena.ne.jp/hirose31/20060817/1155821365
+hirose31++ # a lot of code stolen from http://d.hatena.ne.jp/hirose31/20060817/1155821365
 
 =head1 SEE ALSO
 
