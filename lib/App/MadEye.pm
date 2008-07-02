@@ -30,7 +30,12 @@ sub run {
 
     unless (defined $self->class_component_methods->{'run_job'}) {
         $self->log(debug => 'use Worker::Simple');
-        $self->load_plugins(qw/Worker::Simple/ => {});
+        $self->load_plugins(
+            {
+                module => 'Worker::Simple',
+                config => { config => { task_timeout => 10 } }
+            }
+        );
     }
 
     $self->run_hook('check');
