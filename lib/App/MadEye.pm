@@ -50,7 +50,7 @@ sub run {
         for my $obj ( @{ $self->class_component_hooks->{notify} } ) {
             my ( $plugin, $method ) = ( $obj->{plugin}, $obj->{method} );
             if ($self->_should_run( plugin => $plugin )) {
-                $self->run_hook('notify' => $self->{results});
+                $plugin->$method($self->{results});
             }
         }
     }
