@@ -31,7 +31,7 @@ plugins:
 
 # - module: Agent::HTTP
 #   config:
-#     tiemout: 5
+#     timeout: 5
 #     target:
 #       - http://livedoor.com/
 #     user_agent: DoCoMo/1.0/P504i/c30/TB
