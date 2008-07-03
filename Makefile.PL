@@ -4,7 +4,7 @@ all_from 'lib/App/MadEye.pm';
 
 requires 'Class::Component' => '0.17';
 requires 'LWP::UserAgent';
-requires 'Params::Validate';
+requires 'Params::Validate' => 0.91;
 requires 'YAML';
 requires 'IO::Socket::INET';
 requires 'Socket';

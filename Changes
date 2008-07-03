@@ -1,5 +1,12 @@
 Revision history for Perl extension App::MadEye
 
+0.06
+
+    (BUGS)
+
+    - oops. notifier doesn't works.
+      (broken at 0.05)
+
 0.05
 
     (FEATURE)
