@@ -6,7 +6,11 @@ use App::MadEye;
 my $count = 0;
 {
     package Notify;
-    sub bar { $count++ }
+    use Params::Validate ':all';
+    sub bar {
+        my ($self, $c, $args) = validate_pos(@_ => OBJECT, OBJECT, OBJECT);
+        $count++;
+    }
     sub config { +{ } }
 }
 
@@ -18,7 +22,7 @@ my $count = 0;
 my $c = App::MadEye->new({config => { }});
 
 for (1..4) {
-    $c->register_hook('notify' => { plugin => 'Notify', method => 'bar'});
+    $c->register_hook('notify' => { plugin => bless({}, 'Notify'), method => 'bar'});
 }
 for (1..6) {
     $c->add_result(
