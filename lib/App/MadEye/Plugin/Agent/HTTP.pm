@@ -16,7 +16,15 @@ sub is_dead {
     my $res = $ua->get($url);
 
     if ($res->code == 200) {
-        return 0;
+        if (my $part = $self->config->{config}->{part}) {
+            if (index($res->content, $part) >= 0) {
+                return; # ok
+            } else {
+                return "contents does not contain $part";
+            }
+        } else {
+            return 0;
+        }
     } else {
         return join( "\n", $res->code, $res->message, $res->content );
     }
@@ -44,6 +52,9 @@ App::MadEye::Plugin::Agent::HTTP - check HTTP
             required: yes
             type: int
         user_agent:
+            required: no
+            type: str
+        part:
             required: no
             type: str
 
