@@ -10,7 +10,7 @@ sub is_dead {
     my $conf    = $self->config->{config};
     my $port    = $conf->{port} || 11211;
     my $timeout = $conf->{timeout} || 1;
-    my $namespace => $conf->{namespace} || 'madeye';
+    my $namespace = $conf->{namespace} || 'madeye';
 
     my $sock = Cache::Memcached::Fast->new({
         servers => ["$host:$port"],
