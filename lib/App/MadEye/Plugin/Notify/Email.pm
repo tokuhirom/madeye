@@ -18,8 +18,8 @@ sub notify : Hook {
         $plugin =~ s/.+::Agent:://;
 
         my $mail = MIME::Lite->new(
-            'To'        => $from_addr,
-            'From'      => $to_addr,
+            'To'        => $to_addr,
+            'From'      => $from_addr,
             'Subject'   => sprintf($subject, $plugin),
             'Data'      => $self->_format( $plugin, $results ),
         );
