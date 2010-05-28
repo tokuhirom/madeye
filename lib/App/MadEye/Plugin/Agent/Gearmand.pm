@@ -78,13 +78,13 @@ App::MadEye::Plugin::Agent::Gearmand - monitoring gearmand
             sequence:
                 - type: str
         port:
-            required: yes
+            required: no
             type: int
         connect_timeout:
-            required: yes
+            required: no
             type: int
         select_timeout:
-            required: yes
+            required: no
             type: int
 
 =head1 AUTHORS
