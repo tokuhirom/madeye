@@ -17,3 +17,5 @@
 ^[^/]+\.yaml$
 ^\.shipit$
 \.sw[po]$
+^\.git
+^App-MadEye-\d
