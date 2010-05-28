@@ -10,7 +10,7 @@ sub is_dead {
 
     my $conf = $self->config->{config};
     my $user     = $conf->{user}     or die "missing user";
-    my $password = $conf->{password} or die "missing password";
+    my $password = $conf->{password} || '';
 
     my $dbh;
     eval {
