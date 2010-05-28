@@ -1,3 +1,2 @@
-steps = CommitMessageWrap, FindVersion, ChangeVersion, CheckChangeLog, DistTest, Commit, Tag, MakeDist, UploadCPAN
-svk.tagpattern = release-%v
-commit_message.format = lang/perl/App-MadEye: %msg
+steps = FindVersion, ChangeVersion, CheckChangeLog, DistTest, Commit, Tag, MakeDist, UploadCPAN
+git.push_to = origin
