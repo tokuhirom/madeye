@@ -14,7 +14,7 @@ sub is_dead {
 
     my $dns = Net::DNS::Resolver->new(
         recurse     => 0,
-        nameservers => [$host],
+        nameservers => ref($host) eq 'ARRAY' ? $host :  [$host],
     );
     $dns->tcp_timeout($timeout);
     $dns->udp_timeout($timeout);
