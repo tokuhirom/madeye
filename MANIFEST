@@ -4,19 +4,11 @@ inc/Module/Install/AuthorTests.pm
 inc/Module/Install/Base.pm
 inc/Module/Install/Can.pm
 inc/Module/Install/Fetch.pm
-inc/Module/Install/Include.pm
 inc/Module/Install/Makefile.pm
 inc/Module/Install/Metadata.pm
-inc/Module/Install/TestBase.pm
+inc/Module/Install/Scripts.pm
 inc/Module/Install/Win32.pm
 inc/Module/Install/WriteAll.pm
-inc/Spiffy.pm
-inc/Test/Base.pm
-inc/Test/Base/Filter.pm
-inc/Test/Builder.pm
-inc/Test/Builder/Module.pm
-inc/Test/More.pm
-inc/YAML.pm
 lib/App/MadEye.pm
 lib/App/MadEye/Plugin/Agent/Base.pm
 lib/App/MadEye/Plugin/Agent/DBI.pm
@@ -40,6 +32,8 @@ lib/App/MadEye/Plugin/Agent/SNMP/Disk.pm
 lib/App/MadEye/Plugin/Agent/SNMP/IPAddress.pm
 lib/App/MadEye/Plugin/Agent/SNMP/Process.pm
 lib/App/MadEye/Plugin/Agent/SSLExpireDate.pm
+lib/App/MadEye/Plugin/Agent/TheSchwartz/Error.pm
+lib/App/MadEye/Plugin/Agent/TheSchwartz/Job.pm
 lib/App/MadEye/Plugin/Agent/WriteDisk.pm
 lib/App/MadEye/Plugin/Base.pm
 lib/App/MadEye/Plugin/Check/Flock.pm
@@ -60,7 +54,7 @@ lib/App/MadEye/Rule/Retry.pm
 lib/App/MadEye/Util.pm
 madeye.pl
 Makefile.PL
-MANIFEST
+MANIFEST			This list of files
 META.yml
 README
 t/00_compile.t

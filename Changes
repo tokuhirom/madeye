@@ -1,5 +1,13 @@
 Revision history for Perl extension App::MadEye
 
+0.08
+
+    (FEATURES)
+    - added Agent::TheSchwartz::Error, Agent::TheSchwartz::Job.
+
+    (MAINENANCE)
+    - modernize package
+
 0.07
 
     (FEATURES)
