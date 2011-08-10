@@ -49,10 +49,12 @@ features(
     ],
 );
 
+install_script 'madeye.pl';
+
 tests('t/*.t t/*/*.t t/*/*/*.t t/*/*/*/*.t');
 build_requires 'Test::More';
 build_requires 'YAML';
 author_tests('xt');
-use_test_base;
+
 WriteAll;
 
