@@ -54,6 +54,5 @@ build_requires 'Test::More';
 build_requires 'YAML';
 author_tests('xt');
 use_test_base;
-auto_include;
 WriteAll;
 
