@@ -17,20 +17,20 @@ sub notify : Hook {
 
     while (my ($plugin, $results) = each %$args) {
         $plugin =~ s/.+::Agent:://;
-        my $msg = "$plugin: ";
         for my $result (@$results) {
-            $msg .= "($result->{target}): $result->{message} ";
-        }
+            my $msg = "$plugin: ($result->{target}): $result->{message} ";
 
-        my $ua = Furl->new(
-            timeout => 5,
-            agent => "MadEye/$App::MadEye::VERSION"
-        );
-        my $res = $ua->post("$url/notice", [], [
-            channel => $channel,
-            message => $msg,
-        ]);
-        $res->is_success or die $res->status_line;
+            my $ua = Furl->new(
+                timeout => 5,
+                agent => "MadEye/$App::MadEye::VERSION"
+            );
+            my $res = $ua->post("$url/notice", [], [
+                channel => $channel,
+                message => $msg,
+            ]);
+            $res->is_success or die $res->status_line;
+            $context->log( info => "posted to $channel." );
+        }
     }
 }
 
