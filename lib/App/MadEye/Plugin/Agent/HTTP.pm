@@ -1,7 +1,7 @@
 package App::MadEye::Plugin::Agent::HTTP;
 use strict;
 use warnings;
-use LWP::UserAgent;
+use Furl;
 use App::MadEye::Plugin::Agent::Base;
 
 our $TIMEOUT = 15;
@@ -9,7 +9,7 @@ our $TIMEOUT = 15;
 sub is_dead {
     my ($self, $url) = @_;
 
-    my $ua = LWP::UserAgent->new(
+    my $ua = Furl->new(
         timeout => $TIMEOUT,
         agent   => $self->config->{config}->{user_agent} || "App::MadEye($App::MadEye::VERSION)",
     );

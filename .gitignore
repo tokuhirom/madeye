@@ -14,3 +14,6 @@ inc/
 *.swo
 *.bs
 App-MadEye-*
+/local/
+carton.lock
+/.carton/
