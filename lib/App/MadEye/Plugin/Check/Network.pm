@@ -2,14 +2,14 @@ package App::MadEye::Plugin::Check::Network;
 use strict;
 use warnings;
 use base qw/Class::Component::Plugin/;
-use LWP::UserAgent;
+use Furl;
 
 sub check : Hook {
     my ($self, $context, $args) = @_;
 
     my $conf = $self->config->{config};
 
-    my $ua = LWP::UserAgent->new( timeout => $conf->{timeout} || 10 );
+    my $ua = Furl->new( timeout => $conf->{timeout} || 10 );
 
     for my $url (@{$conf->{urls}}) {
         if ( $ua->head($url)->is_success ) {
