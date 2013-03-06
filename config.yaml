@@ -140,6 +140,11 @@ plugins:
 #       - 192.168.2.3
 
   - module: Notify::Debug
+  - module: Notify::Ikachan
+    config:
+      url: http://127.0.0.1:4979/
+      channel: '#deadbeef'
+
 # - module: Notify::Email
 #   config:
 #     from_addr: tokuhirom@example.com
