@@ -10,8 +10,8 @@ use Getopt::Long;
 my $conffname = 'config.yaml';
 my $version = 0;
 GetOptions(
-    'config=s'  => \$conffname,
-    'version'   => \$version,
+    'config=s' => \$conffname,
+    'version'  => \$version,
 ) or die "Usage: $0 -c config.yaml";
 
 if ($version) {
