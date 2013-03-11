@@ -1,9 +1,14 @@
 Changes
+config.yaml.sample
+cpanfile
+inc/Module/CPANfile.pm
 inc/Module/Install.pm
 inc/Module/Install/AuthorTests.pm
 inc/Module/Install/Base.pm
 inc/Module/Install/Can.pm
+inc/Module/Install/CPANfile.pm
 inc/Module/Install/Fetch.pm
+inc/Module/Install/Include.pm
 inc/Module/Install/Makefile.pm
 inc/Module/Install/Metadata.pm
 inc/Module/Install/Scripts.pm
@@ -41,6 +46,7 @@ lib/App/MadEye/Plugin/Check/Network.pm
 lib/App/MadEye/Plugin/Check/User.pm
 lib/App/MadEye/Plugin/Notify/Debug.pm
 lib/App/MadEye/Plugin/Notify/Email.pm
+lib/App/MadEye/Plugin/Notify/Ikachan.pm
 lib/App/MadEye/Plugin/Notify/IKC.pm
 lib/App/MadEye/Plugin/Notify/IMKayac.pm
 lib/App/MadEye/Plugin/Notify/Nakanobu.pm
@@ -55,6 +61,7 @@ lib/App/MadEye/Util.pm
 madeye.pl
 Makefile.PL
 MANIFEST			This list of files
+META.json
 META.yml
 README
 t/00_compile.t
