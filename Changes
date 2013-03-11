@@ -1,5 +1,10 @@
 Revision history for Perl extension App::MadEye
 
+0.09 2013-03-11T09:38:14
+
+    - Added Notify::Ikachan
+    - Switch to Furl
+
 0.08
 
     (FEATURES)
