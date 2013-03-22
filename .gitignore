@@ -18,3 +18,8 @@ App-MadEye-*
 carton.lock
 /.carton/
 /config.yaml
+.build
+_build_params
+/Build
+!Build/
+!META.json
