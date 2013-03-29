@@ -23,3 +23,6 @@ _build_params
 /Build
 !Build/
 !META.json
+/madeye-*
+/.build
+/_build_params

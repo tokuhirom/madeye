@@ -4,39 +4,52 @@
       "Tokuhiro Matsuno <tokuhirom AAJKLFJEF GMAIL COM>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/0.0.44",
-   "license" : "perl_5",
+   "generated_by" : "Minilla/v0.0.49, CPAN::Meta::Converter version 2.120921",
+   "license" : [
+      "perl_5"
+   ],
    "meta-spec" : {
       "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
       "version" : "2"
    },
    "name" : "madeye",
    "prereqs" : {
+      "configure" : {
+         "requires" : {
+            "CPAN::Meta" : "0",
+            "Module::Build" : "0.4"
+         }
+      },
       "runtime" : {
          "requires" : {
             "Class::Component" : "0.17",
-            "Furl" : 0,
-            "IO::Select" : 0,
-            "IO::Socket::INET" : 0,
-            "IO::Socket::SSL" : 0,
-            "IPC::Open3" : 0,
-            "Kwalify" : 0,
-            "List::Util" : 0,
-            "Log::Dispatch" : 0,
-            "Net::SNMP" : 0,
-            "Net::SSH" : 0,
-            "Params::Validate" : 0.91,
-            "Pod::POM" : 0,
-            "Socket" : 0,
-            "YAML" : 0
+            "Furl" : "0",
+            "IO::Select" : "0",
+            "IO::Socket::INET" : "0",
+            "IO::Socket::SSL" : "0",
+            "IPC::Open3" : "0",
+            "Kwalify" : "0",
+            "List::Util" : "0",
+            "Log::Dispatch" : "0",
+            "Net::SNMP" : "0",
+            "Net::SSH" : "0",
+            "Params::Validate" : "0.91",
+            "Pod::POM" : "0",
+            "Socket" : "0",
+            "YAML" : "0"
          }
       }
    },
    "release_status" : "unstable",
    "resources" : {
-      "homepage" : "git://github.com/tokuhirom/madeye/tree",
+      "bugtracker" : {
+         "web" : "https://github.com/tokuhirom/madeye/issues"
+      },
+      "homepage" : "https://github.com/tokuhirom/madeye",
       "repository" : {
-         "url" : "git://github.com/tokuhirom/madeye.git"
+         "type" : "git",
+         "url" : "git://github.com/tokuhirom/madeye.git",
+         "web" : "https://github.com/tokuhirom/madeye"
       }
    },
    "version" : "0.10"
