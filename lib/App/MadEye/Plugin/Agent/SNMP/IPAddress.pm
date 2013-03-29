@@ -39,7 +39,7 @@ __END__
 
 =head1 NAME
 
-App::MadEye::Plugin::Agent::SNMP::IPAddress - monitoring ip address
+App::MadEye::Plugin::Agent::SNMP::IPAddress - monitoring IP address
 
 =head1 SCHEMA
 

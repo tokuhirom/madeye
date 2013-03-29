@@ -32,7 +32,7 @@ __END__
 
 =head1 NAME
 
-App::MadEye::Rule::Interval - notification itnerval
+App::MadEye::Rule::Interval - notification interval
 
 =head1 SCHEMA
 

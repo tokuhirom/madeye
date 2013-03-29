@@ -2,7 +2,7 @@ package App::MadEye;
 use strict;
 use warnings;
 use 5.00800;
-our $VERSION = '0.10';
+our $VERSION = '0.11';
 use Class::Component;
 use Params::Validate;
 use UNIVERSAL::require;
@@ -164,7 +164,7 @@ App::MadEye is enterprise-class monitoring solutions.
 
 =head1 AUTHOR
 
-Tokuhiro Matsuno E<lt>tokuhirom AAJKLFJEF GMAIL COME<gt>
+Tokuhiro Matsuno E<lt>tokuhirom GMAIL COME<gt>
 
 =head1 SEE ALSO
 

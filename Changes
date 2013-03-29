@@ -2,6 +2,10 @@ Revision history for Perl extension App::MadEye
 
 {{$NEXT}}
 
+0.11 2013-03-29T05:34:41Z
+
+    - Packaging again
+
 0.10 2013-03-22T17:59:44
 
     - Convert to minil
