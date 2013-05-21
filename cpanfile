@@ -1,3 +1,5 @@
+requires 'perl', '5.008_001';
+
 requires 'Class::Component' => '0.17';
 requires 'Furl';
 requires 'Params::Validate' => 0.91;

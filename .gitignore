@@ -26,3 +26,5 @@ _build_params
 /madeye-*
 /.build
 /_build_params
+/App-madeye-*
+!LICENSE
