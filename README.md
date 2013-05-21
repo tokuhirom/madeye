@@ -20,7 +20,7 @@ App::MadEye is enterprise-class monitoring solutions.
 
 # AUTHOR
 
-Tokuhiro Matsuno <tokuhirom AAJKLFJEF GMAIL COM>
+Tokuhiro Matsuno <tokuhirom GMAIL COM>
 
 # SEE ALSO
 
