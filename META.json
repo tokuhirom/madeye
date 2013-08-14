@@ -4,7 +4,7 @@
       "Tokuhiro Matsuno <tokuhirom GMAIL COM>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v0.4.3, CPAN::Meta::Converter version 2.130880",
+   "generated_by" : "Minilla/v0.5.6, CPAN::Meta::Converter version 2.131560",
    "license" : [
       "perl_5"
    ],
@@ -34,30 +34,68 @@
       },
       "develop" : {
          "requires" : {
+            "Perl::Critic" : "1.105",
             "Test::CPAN::Meta" : "0",
             "Test::MinimumVersion" : "0.10108",
+            "Test::Perl::Critic" : "1.02",
             "Test::Pod" : "1.41",
-            "Test::Spellunker" : "v0.2.2"
+            "Test::Spellunker" : "v0.2.7"
          }
       },
       "runtime" : {
          "requires" : {
+            "CPAN::Meta" : "0",
+            "CPAN::Meta::Prereqs" : "0",
+            "Cache::FileCache" : "0",
+            "Cache::Memcached::Fast" : "0",
             "Class::Component" : "0.17",
+            "Class::Component::Plugin" : "0",
+            "DBI" : "0",
+            "DateTime" : "0",
+            "DateTime::Event::Cron" : "0",
+            "Digest::SHA1" : "0",
+            "Encode" : "0",
             "Furl" : "0",
+            "Gearman::Client" : "0",
+            "Gearman::Util" : "0",
+            "Gearman::Worker" : "0",
+            "Getopt::Long" : "0",
             "IO::Select" : "0",
             "IO::Socket::INET" : "0",
             "IO::Socket::SSL" : "0",
             "IPC::Open3" : "0",
+            "JSON::RPC::Common::Marshal::HTTP" : "0",
+            "JSON::RPC::Common::Procedure::Call" : "0",
             "Kwalify" : "0",
+            "LWP::UserAgent" : "0",
             "List::Util" : "0",
             "Log::Dispatch" : "0",
+            "MIME::Lite" : "0",
+            "MogileFS::Admin" : "0",
+            "Net::DNS" : "0",
+            "Net::SMTP::TLS" : "0",
             "Net::SNMP" : "0",
             "Net::SSH" : "0",
+            "Net::SSL::ExpireDate" : "0",
+            "Net::XMPP" : "0",
+            "POE::Component::IKC::ClientLite" : "0",
             "Params::Validate" : "0.91",
             "Pod::POM" : "0",
+            "Scalar::Util" : "0",
             "Socket" : "0",
+            "Sys::Syslog" : "0",
+            "Text::Diff" : "0",
+            "Text::Truncate" : "0",
+            "Time::HiRes" : "0",
+            "UNIVERSAL::require" : "0",
+            "XML::Stream" : "0",
             "YAML" : "0",
             "perl" : "5.008_001"
+         }
+      },
+      "test" : {
+         "requires" : {
+            "Test::More" : "0"
          }
       }
    },
@@ -73,7 +111,7 @@
          "web" : "https://github.com/tokuhirom/madeye"
       }
    },
-   "version" : "0.11",
+   "version" : "0.12",
    "x_contributors" : [
       "otsune <otsune@d0d07461-0603-4401-acd4-de1884942a52>",
       "tokuhirom <tokuhirom@d0d07461-0603-4401-acd4-de1884942a52>",
