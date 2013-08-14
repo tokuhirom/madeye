@@ -126,7 +126,7 @@ sub _moniker {
 1;
 __END__
 
-=for stopwords XMPP
+=for stopwords XMPP hirose31
 
 =head1 NAME
 
