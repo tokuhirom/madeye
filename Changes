@@ -2,6 +2,12 @@ Revision history for Perl extension App::MadEye
 
 {{$NEXT}}
 
+0.13 2013-09-29T01:40:28Z
+
+    - Remove nakanobu plugin from core.
+      Please use Ikachan instead.
+      (tokuhirom)
+
 0.12 2013-08-14T03:16:18Z
 
     - Packaging again

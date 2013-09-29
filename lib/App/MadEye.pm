@@ -2,7 +2,7 @@ package App::MadEye;
 use strict;
 use warnings;
 use 5.00800;
-our $VERSION = '0.12';
+our $VERSION = '0.13';
 use Class::Component;
 use Params::Validate;
 use UNIVERSAL::require;
