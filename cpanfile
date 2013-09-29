@@ -30,8 +30,6 @@ requires 'Gearman::Client';
 requires 'Gearman::Util';
 requires 'Gearman::Worker';
 requires 'Getopt::Long';
-requires 'JSON::RPC::Common::Marshal::HTTP';
-requires 'JSON::RPC::Common::Procedure::Call';
 requires 'LWP::UserAgent';
 requires 'MIME::Lite';
 requires 'MogileFS::Admin';
