@@ -10,7 +10,7 @@ sub is_dead {
     my ($self, $url) = @_;
 
     my $ua = Furl->new(
-        timeout => $TIMEOUT,
+        timeout => $self->config->{config}->{timeout}    || $TIMEOUT,
         agent   => $self->config->{config}->{user_agent} || "App::MadEye($App::MadEye::VERSION)",
     );
     my $res = $ua->get($url);
@@ -49,7 +49,7 @@ App::MadEye::Plugin::Agent::HTTP - check HTTP
             sequence:
                 - type: str
         timeout:
-            required: yes
+            required: no
             type: int
         user_agent:
             required: no
